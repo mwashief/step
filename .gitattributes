@@ -1,0 +1,5 @@
+# 2010
+*.cpp -lf
+
+# 2020
+*.cpp text eol=lf 
