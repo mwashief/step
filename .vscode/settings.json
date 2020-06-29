@@ -2,6 +2,8 @@
     "files.associations": {
         "*.asm": "assembly",
         "iostream": "cpp",
-        "iomanip": "cpp"
+        "iomanip": "cpp",
+        "cmath": "cpp",
+        "complex": "cpp"
     }
 }
