@@ -4,7 +4,7 @@
 		{
 			"type": "shell",
 			"label": "C/C++: cpp.exe build active file",
-			"command": "C:\\Program Files (x86)\\CodeBlocks\\MinGW\\bin\\cpp.exe",
+			"command": "g++",
 			"args": [
 				"-g",
 				"${file}",
