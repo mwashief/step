@@ -18,6 +18,23 @@
 				"$gcc"
 			],
 			"group": "build"
+		},
+		{
+			"type": "shell",
+			"label": "Clean executables",
+			"windows": {
+				"command": "del",
+				"args": [
+					"/s",
+					"/q",
+					"*exe"
+				]
+			},
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [],
+			"group": "build"
 		}
 	]
 }
