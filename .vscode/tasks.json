@@ -27,7 +27,8 @@
 				"args": [
 					"/s",
 					"/q",
-					"*exe"
+					"*exe",
+					".class"
 				]
 			},
 			"options": {
