@@ -2,6 +2,20 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "java",
+      "name": "CodeLens (Launch) - _763",
+      "request": "launch",
+      "mainClass": "UVa._763",
+      "projectName": "Step_8c5c15b4"
+    },
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - Main",
+      "request": "launch",
+      "mainClass": "Others.Math.Main",
+      "projectName": "Step_8c5c15b4"
+    },
+    {
       "name": "g++.exe build and debug active file",
       "type": "cppdbg",
       "request": "launch",
