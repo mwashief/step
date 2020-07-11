@@ -19,6 +19,7 @@
         "regex": "cpp",
         "valarray": "cpp",
         "ostream": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "bitset": "cpp"
     }
 }

@@ -37,5 +37,5 @@ void findAllFactors(long long n)
 
 int main()
 {
-    findAllFactors(9345897);
+    findAllFactors(13);
 }
