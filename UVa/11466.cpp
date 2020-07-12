@@ -14,7 +14,7 @@ void sieve()
         if (visited[(i - 3) / 2] == 0)
         {
             primes.push_back(i);
-            for (long long j = i * i; j < i && j <= limit; j += 2 * i)
+            for (long long j = i * i; j > i && j <= limit; j += 2 * i)
             {
                 visited[(j - 3) / 2] = 1;
             }
