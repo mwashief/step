@@ -28,7 +28,8 @@
 					"/s",
 					"/q",
 					"*.exe",
-					"*.class"
+					"*.class",
+					"tempCodeRunnerFile.cpp"
 				]
 			},
 			"options": {
