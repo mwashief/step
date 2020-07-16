@@ -20,6 +20,7 @@
         "valarray": "cpp",
         "ostream": "cpp",
         "iosfwd": "cpp",
-        "bitset": "cpp"
+        "bitset": "cpp",
+        "random": "cpp"
     }
 }
