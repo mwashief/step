@@ -21,6 +21,7 @@
         "ostream": "cpp",
         "iosfwd": "cpp",
         "bitset": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "functional": "cpp"
     }
 }
