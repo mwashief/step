@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "CodeLens (Launch) - _787",
+      "request": "launch",
+      "mainClass": "UVa._787",
+      "projectName": "Step_8c5c15b4"
+    },
+    {
+      "type": "java",
       "name": "CodeLens (Launch) - _623",
       "request": "launch",
       "mainClass": "UVa._623",
