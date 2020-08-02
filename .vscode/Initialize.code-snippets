@@ -9,6 +9,7 @@
 			"\t$CURRENT_DATE $CURRENT_MONTH_NAME $CURRENT_YEAR",
 			"\t${TM_DIRECTORY/.*\\\\(.*)$/$1/} ${TM_FILENAME_BASE}",
 			"$BLOCK_COMMENT_END\n",
+			"#pragma GCC optimize(\"O3\")",
 			"#include <bits/stdc++.h>",
 			"#define ull unsigned long long",
 			"#define ll long long",
