@@ -21,7 +21,7 @@
 			"#define untie cin.tie(0)",
 			"#define ms(a, b) memset(a, b, sizeof a)",
 			"using namespace std;\n",
-			"int main() {$0}"
+			"int main()\n{\n\t$0\n}\n"
 		],
 		"description": "Initializes cpp"
 	}
