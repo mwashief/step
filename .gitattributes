@@ -2,4 +2,4 @@
 *.cpp -lf
 
 # 2020
-*.cpp text eol=lf 
+*.cpp text eol=lf
