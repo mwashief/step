@@ -9,7 +9,7 @@
 #define ull unsigned long long
 #define ll long long
 #define pb push_back
-#define mp make_pair 
+#define mp make_pair
 #define fr first
 #define sc second
 #define fastio ios_base::sync_with_stdio(0)
@@ -21,28 +21,29 @@ unordered_map<string, ull> memo;
 
 inline ull isRed(string s, int k)
 {
-    return s[k] == 'R'?1:0;
+    return s[k] == 'R' ? 1 : 0;
 }
-
 
 ull dp(string s)
 {
-    if (s.size()==0) return 1;
-    if (memo.find(s) != memo.end()) return memo[s];
+    if (s.size() == 0)
+        return 1;
+    if (memo.find(s) != memo.end())
+        return memo[s];
     int co;
     ull ans = 0;
-    for (int j=1; j<s.size()-1; j+=3)
+    for (int j = 1; j < s.size() - 1; j += 3)
     {
         int co = isRed(s, 0) + isRed(s, j);
-        if (co<2)
-            for (int k=j+1; k<s.size(); k+=3)
+        if (co < 2)
+            for (int k = j + 1; k < s.size(); k += 3)
             {
-                if (co+isRed(s, k)<2)
+                if (co + isRed(s, k) < 2)
                 {
-                    ull a = dp(s.substr(1, j-1));
-                    ull b = dp(s.substr(j+1, k-j-1));
-                    ull c = dp(s.substr(k+1, s.size()-k-1));
-                    ans += a*b*c;
+                    ull a = dp(s.substr(1, j - 1));
+                    ull b = dp(s.substr(j + 1, k - j - 1));
+                    ull c = dp(s.substr(k + 1, s.size() - k - 1));
+                    ans += a * b * c;
                 }
             }
     }
@@ -54,7 +55,7 @@ int main()
     int T, co;
     bool yes;
     cin >> T;
-    for (int tt=1; tt<=T; tt++)
+    for (int tt = 1; tt <= T; tt++)
     {
         cin >> s;
         memo.clear();

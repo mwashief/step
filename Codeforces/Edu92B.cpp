@@ -9,7 +9,7 @@
 #define ull unsigned long long
 #define ll long long
 #define pb push_back
-#define mp make_pair 
+#define mp make_pair
 #define fr first
 #define sc second
 #define fastio ios_base::sync_with_stdio(0)
@@ -22,25 +22,28 @@ int memo[100005][10];
 
 int dp(int now, int left)
 {
-    if (now>=n) return 0;
-    if (memo[now][left] != -1) return memo[now][left];
+    if (now >= n)
+        return 0;
+    if (memo[now][left] != -1)
+        return memo[now][left];
     int move = now + 2 * left;
-    if (move >= k) return 0;
+    if (move >= k)
+        return 0;
     int a = 0;
     int b = 0;
-    if (now !=0 && left < z)
+    if (now != 0 && left < z)
     {
-        if (move==k-1)
-            a = arr[now-1];
+        if (move == k - 1)
+            a = arr[now - 1];
         else
-            a = arr[now-1] + arr[now] + dp(now, left+1);
+            a = arr[now - 1] + arr[now] + dp(now, left + 1);
     }
-    if (now < n-1)
+    if (now < n - 1)
     {
-        if (move==k-1)
-            b = arr[now+1];
+        if (move == k - 1)
+            b = arr[now + 1];
         else
-            b = arr[now+1] + dp(now+1, left);
+            b = arr[now + 1] + dp(now + 1, left);
     }
     return memo[now][left] = max(a, b);
 }
@@ -53,10 +56,8 @@ int main()
     {
         ms(memo, -1);
         cin >> n >> k >> z;
-        for (int i=0; i<n; i++)
+        for (int i = 0; i < n; i++)
             cin >> arr[i];
-        cout << arr[0]+dp(0, 0) << endl;
-
+        cout << arr[0] + dp(0, 0) << endl;
     }
-
 }

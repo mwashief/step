@@ -9,7 +9,7 @@
 #define ull unsigned long long
 #define ll long long
 #define pb push_back
-#define mp make_pair 
+#define mp make_pair
 #define fr first
 #define sc second
 #define fastio ios_base::sync_with_stdio(0)
@@ -21,20 +21,23 @@ int memo[105][105];
 
 int dp(int start, int finish)
 {
-    if(start>=finish) return 0;
-    if(memo[start][finish] != -1) return memo[start][finish];
-    if(s[start] == s[finish]) return memo[start][finish] = dp(start+1, finish-1);
-    return memo[start][finish] = 1 + min(dp(start+1, finish), dp(start,finish-1));
+    if (start >= finish)
+        return 0;
+    if (memo[start][finish] != -1)
+        return memo[start][finish];
+    if (s[start] == s[finish])
+        return memo[start][finish] = dp(start + 1, finish - 1);
+    return memo[start][finish] = 1 + min(dp(start + 1, finish), dp(start, finish - 1));
 }
 
 int main()
 {
     int T;
     cin >> T;
-    for(int tt=1; tt<=T; tt++)
+    for (int tt = 1; tt <= T; tt++)
     {
         cin >> s;
         ms(memo, -1);
-        cout << "Case " << tt << ": " << dp(0, s.size()-1) << endl;
+        cout << "Case " << tt << ": " << dp(0, s.size() - 1) << endl;
     }
 }

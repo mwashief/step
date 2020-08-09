@@ -9,7 +9,7 @@
 #define ull unsigned long long
 #define ll long long
 #define pb push_back
-#define mp make_pair 
+#define mp make_pair
 #define fr first
 #define sc second
 #define fastio ios_base::sync_with_stdio(0)
@@ -24,33 +24,39 @@ ll fact[1005];
 
 ll com(int a, int b)
 {
-    if (a<0 || b<0) return 0;
-    if (C[a][b]) return C[a][b];
-    if (b==0 || a==b) return C[a][b] = 1;
-    return C[a][b] = (com(a-1, b-1) + com(a-1, b))%mod;
+    if (a < 0 || b < 0)
+        return 0;
+    if (C[a][b])
+        return C[a][b];
+    if (b == 0 || a == b)
+        return C[a][b] = 1;
+    return C[a][b] = (com(a - 1, b - 1) + com(a - 1, b)) % mod;
 }
 
 ll dp(int x, int y)
 {
-    if (y==0) return fact[x];
-    if (memo[x][y] != -1) return memo[x][y];
-    memo[x][y] = ((x-1)*dp(x-1, y-1))%mod;
-    ll temp = ((y-1)*(dp(x-2, y-2)))%mod;
-    return memo[x][y] = (memo[x][y]+temp)%mod;
+    if (y == 0)
+        return fact[x];
+    if (memo[x][y] != -1)
+        return memo[x][y];
+    memo[x][y] = ((x - 1) * dp(x - 1, y - 1)) % mod;
+    ll temp = ((y - 1) * (dp(x - 2, y - 2))) % mod;
+    return memo[x][y] = (memo[x][y] + temp) % mod;
 }
 
 int main()
 {
-    fact[0]=1;
-    for (ll i=1;i <=1003; i++) fact[i] =(i*fact[i-1])%mod;
+    fact[0] = 1;
+    for (ll i = 1; i <= 1003; i++)
+        fact[i] = (i * fact[i - 1]) % mod;
     int T;
     cin >> T;
-    for (int tt=1; tt<=T; tt++)
+    for (int tt = 1; tt <= T; tt++)
     {
         cin >> n >> m >> k;
         ms(memo, -1);
         ll ans = com(m, k);
-        ans = (ans*dp(n-k, m-k))%mod;
+        ans = (ans * dp(n - k, m - k)) % mod;
         cout << "Case " << tt << ": " << ans << endl;
     }
 }
