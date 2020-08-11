@@ -40,7 +40,7 @@ void dp(int now, int left)
     {
         memo[now][left][i] += memo[now + 1][left][i];
         int x = ((arr[now] % d) + d) % d;
-        memo[now][left][(i + x + d) % d] += memo[now+1][left-1][i];
+        memo[now][left][(i + x + d) % d] += memo[now + 1][left - 1][i];
     }
 }
 
