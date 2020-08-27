@@ -12,4 +12,5 @@
 *.exe
 *.o
 *.so
+*.dat
 tempCodeRunnerFile*
