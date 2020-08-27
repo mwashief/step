@@ -1,28 +1,33 @@
 {
-	"Initialize": {
-		"prefix": [
-			"initialize"
-		],
-		"body": [
-			"$BLOCK_COMMENT_START",
-			"\tWashief Hossain Mugdho",
-			"\t$CURRENT_DATE $CURRENT_MONTH_NAME $CURRENT_YEAR",
-			"\t${TM_DIRECTORY/.*\\\\(.*)$/$1/} ${TM_FILENAME_BASE}",
-			"$BLOCK_COMMENT_END\n",
-			"#pragma GCC optimize(\"O3\")",
-			"#include <bits/stdc++.h>",
-			"#define ull unsigned long long",
-			"#define ll long long",
-			"#define pb push_back",
-			"#define mp make_pair ",
-			"#define fr first",
-			"#define sc second",
-			"#define fastio ios_base::sync_with_stdio(0)",
-			"#define untie cin.tie(0)",
-			"#define ms(a, b) memset(a, b, sizeof a)",
-			"using namespace std;\n",
-			"int main()\n{\n\t$0\n}\n"
-		],
-		"description": "Initializes cpp"
-	}
+    "Initialize": {
+        "prefix": [
+            "initialize"
+        ],
+        "body": [
+            "$BLOCK_COMMENT_START",
+            "\tWashief Hossain Mugdho",
+            "\t$CURRENT_DATE $CURRENT_MONTH_NAME $CURRENT_YEAR",
+            "\t${TM_DIRECTORY/.*\\\\(.*)$/$1/} ${TM_FILENAME_BASE}",
+            "$BLOCK_COMMENT_END\n",
+            "#pragma GCC optimize(\"O3\")",
+            "#include <bits/stdc++.h>",
+            "#define ull unsigned long long",
+            "#define ll long long",
+            "#define pb push_back",
+            "#define mp make_pair ",
+            "#define fr first",
+            "#define sc second",
+            "#define fastio ios_base::sync_with_stdio(0)",
+            "#define untie cin.tie(0)",
+            "#define ms(a, b) memset(a, b, sizeof a)",
+            "using namespace std;\n",
+            "int main()",
+            "{\n#ifdef LOCAL_MACHINE",
+            "\tfreopen(\"output.dat\", \"w\", stdout);",
+            "\tfreopen(\"input.dat\", \"r\", stdin);",
+            "#endif",
+            "\t$0\n}\n"
+        ],
+        "description": "Initializes cpp"
+    }
 }
