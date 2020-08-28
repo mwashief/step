@@ -38,6 +38,21 @@
             },
             "problemMatcher": [],
             "group": "build"
+        },
+        {
+            "type": "shell",
+            "label": "Path fix",
+            "windows": {
+                "command": "node",
+                "args": [
+                    "editSettings.js"
+                ]
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "group": "build"
         }
     ]
 }

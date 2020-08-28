@@ -29,7 +29,7 @@
         "javascript": "node",
         "java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
         "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-        "cpp": "cd $dir && g++ -DLOCAL_MACHINE $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "cpp" : "cd $dir && g++ -DLOCAL_OUTPUT=\\\"S:/Step/output.dat\\\" -DLOCAL_INPUT=\\\"S:/Step/input.dat\\\" $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
         "objective-c": "cd $dir && gcc -framework Cocoa $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
         "php": "php",
         "python": "python -u",

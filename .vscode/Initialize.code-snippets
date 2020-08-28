@@ -22,10 +22,12 @@
             "#define ms(a, b) memset(a, b, sizeof a)",
             "using namespace std;\n",
             "int main()",
-            "{\n#ifdef LOCAL_MACHINE",
-            "\tfreopen(\"output.dat\", \"w\", stdout);",
-            "\tfreopen(\"input.dat\", \"r\", stdin);",
+            "{\n#ifdef LOCAL_OUTPUT",
+            "\tfreopen(LOCAL_OUTPUT, \"w\", stdout);",
             "#endif",
+            "#ifdef LOCAL_INPUT",
+            "\tfreopen(LOCAL_INPUT, \"r\", stdin);",
+            "#endif\n",
             "\t$0\n}\n"
         ],
         "description": "Initializes cpp"
