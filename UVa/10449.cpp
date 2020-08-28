@@ -40,10 +40,8 @@ int main()
         }
         cin >> Q;
         cout << "Set #" << setNo++ << endl;
-        while (Q--)
+        if (Q)
         {
-            cin >> a;
-            a--;
             vector<int> d(n, INT32_MAX);
             bool changed = true;
             d[0] = 0;
@@ -63,11 +61,8 @@ int main()
                             }
                         }
             }
-            if (d[a] < 3 || d[a] == INT32_MAX)
-                cout << "?" << endl;
-            else if (i == n && changed)
+            if (i == n && changed)
             {
-                changed = false;
                 for (i = 0; i < n; i++)
                 {
                     for (int j = 0; j < n; j++)
@@ -77,25 +72,19 @@ int main()
                                 int des = adj[j][k].fr;
                                 int cost = d[j] + adj[j][k].sc;
                                 if (cost < d[des])
-                                {
-                                    d[des] = cost;
-                                    if (des == a)
-                                    {
-                                        changed = true;
-                                        i = n;
-                                        j = n;
-                                        break;
-                                    }
-                                }
+                                    d[des] = INT32_MIN / 2;
                             }
                 }
-                if (changed)
+            }
+            while (Q--)
+            {
+                cin >> a;
+                a--;
+                if (d[a] < 3 || d[a] == INT32_MAX)
                     cout << "?" << endl;
                 else
                     cout << d[a] << endl;
             }
-            else
-                cout << d[a] << endl;
         }
     }
 }
