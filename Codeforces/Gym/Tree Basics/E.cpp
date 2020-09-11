@@ -43,7 +43,7 @@ void modify(int p, double value)
 
 double query(int l, int r)
 {
-    double res = 1;
+    double res = 0;
     for (l += n, r += n; l < r; l >>= 1, r >>= 1)
     {
         if (l & 1)
