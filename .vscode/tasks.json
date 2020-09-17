@@ -30,7 +30,6 @@
                     "/q",
                     "*.exe",
                     "*.class",
-                    "*.dat",
                     "tempCodeRunnerFile.cpp"
                 ]
             },
