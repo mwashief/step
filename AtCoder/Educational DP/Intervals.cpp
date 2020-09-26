@@ -91,7 +91,6 @@ int main()
         cin >> l >> r >> a;
         rules[r].pb(mp(l, a));
     }
-    ll res = 0;
     for (int i = 1; i <= n; i++)
     {
         ll mx = query(1, 0, i - 1, 0, n);
