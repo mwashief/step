@@ -1,5 +1,5 @@
-# 2010
-*.cpp -lf
+* text=auto
 
-# 2020
-*.cpp text eol=lf
+# line
+* text eol=crlf
+* text eol=lf
