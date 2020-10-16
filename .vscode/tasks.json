@@ -3,15 +3,24 @@
     "tasks": [
         {
             "type": "shell",
-            "label": "C/C++: cpp.exe build active file",
+            "label": "C/C++: build active file",
             "command": "g++",
             "args": [
                 "-DDEBUG",
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${fileDirname}/${fileBasenameNoExtension}"
             ],
+            "windows": {
+                "args": [
+                    "-DDEBUG",
+                    "-g",
+                    "${file}",
+                    "-o",
+                    "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                ],
+            },
             "options": {
                 "cwd": "${workspaceFolder}"
             },

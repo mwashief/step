@@ -89,7 +89,10 @@
       "name": "g++.exe build and debug active file",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+      "program": "${fileDirname}\\${fileBasenameNoExtension}",
+      "windows": {
+        "program": "${fileDirname}\\${fileBasenameNoExtension}.exe"
+      },
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
@@ -104,7 +107,7 @@
           "ignoreFailures": true
         }
       ],
-      "preLaunchTask": "C/C++: cpp.exe build active file"
+      "preLaunchTask": "C/C++: build active file"
     }
   ]
 }
