@@ -30,29 +30,26 @@ int main()
 #ifdef LOCAL_INPUT
     freopen(LOCAL_INPUT, "r", stdin);
 #endif
-    vector<vector<int>> all(32, vector<int>());
-    vector<int> data;
+    vector<int> arr;
     int n, x;
     cin >> n;
-    data.pb(0);
+    arr.pb(0);
     for (int i = 0; i < n; i++)
     {
         cin >> x;
-        all[31 - __builtin_clz(x)].pb(x);
-        data.pb(data[data.size() - 1] ^ x);
+        arr.pb(arr[arr.size() - 1] ^ x);
     }
-    for (auto arr : all)
-        if (arr.size() > 2)
-        {
-            cout << 1 << endl;
-            return 0;
-        }
+    if (arr.size() > 65)
+    {
+        cout << 1 << endl;
+        return 0;
+    }
     int res = INT32_MAX;
     for (int leftStart = 1; leftStart < n; leftStart++)
         for (int leftEnd = leftStart; leftEnd < n; leftEnd++)
             for (int rightStart = leftEnd + 1; rightStart <= n; rightStart++)
                 for (int rightEnd = rightStart; rightEnd <= n; rightEnd++)
-                    if ((data[leftEnd] ^ data[leftStart - 1]) > (data[rightEnd] ^ data[rightStart - 1]))
+                    if ((arr[leftEnd] ^ arr[leftStart - 1]) > (arr[rightEnd] ^ arr[rightStart - 1]))
                         res = min(res, leftEnd - leftStart + rightEnd - rightStart);
 
     if (res == INT32_MAX)
