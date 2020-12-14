@@ -24,7 +24,7 @@
             "#define ms(a, b) memset(a, b, sizeof a)",
             "using namespace std;\n",
             "int main()",
-            "{\n\tfastio;\n\tuntie;\n",
+            "{\n\tfastio;\n\tuntie;",
             "#ifdef LOCAL_OUTPUT",
             "\tfreopen(LOCAL_OUTPUT, \"w\", stdout);",
             "#endif",
