@@ -47,10 +47,9 @@ int main()
     int res = INT32_MAX;
     for (int leftStart = 1; leftStart < n; leftStart++)
         for (int leftEnd = leftStart; leftEnd < n; leftEnd++)
-            for (int rightStart = leftEnd + 1; rightStart <= n; rightStart++)
-                for (int rightEnd = rightStart; rightEnd <= n; rightEnd++)
-                    if ((arr[leftEnd] ^ arr[leftStart - 1]) > (arr[rightEnd] ^ arr[rightStart - 1]))
-                        res = min(res, leftEnd - leftStart + rightEnd - rightStart);
+            for (int rightEnd = leftEnd + 1; rightEnd <= n; rightEnd++)
+                if ((arr[leftEnd] ^ arr[leftStart - 1]) > (arr[rightEnd] ^ arr[leftEnd]))
+                    res = min(res, rightEnd - leftStart - 1);
 
     if (res == INT32_MAX)
         cout << -1 << endl;
