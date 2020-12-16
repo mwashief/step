@@ -42,8 +42,8 @@
         "body": [
             "int tc;",
             "cin >> tc;",
-            "while(tc--)",
-            "\t solve();\n"
+            "while (tc--)",
+            "\trun_tests();\n"
         ],
         "description": "Creates test case utility"
     }

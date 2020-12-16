@@ -22,7 +22,10 @@
         "iosfwd": "cpp",
         "bitset": "cpp",
         "random": "cpp",
-        "functional": "cpp"
+        "functional": "cpp",
+        "charconv": "cpp",
+        "memory": "cpp",
+        "new": "cpp"
     },
     "C_Cpp.clang_format_style": "Emulated Visual Studio",
     "code-runner.executorMap": {

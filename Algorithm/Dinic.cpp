@@ -20,14 +20,14 @@
 #define ms(a, b) memset(a, b, sizeof a)
 using namespace std;
 
-struct edge
+struct Edge
 {
     int u, v, cap, flow;
 };
 
 struct Dinic
 {
-    vector<edge> e;
+    vector<Edge> e;
     vector<vector<int>> adj;
     vector<int> ptr;
     vector<int> level;
@@ -38,7 +38,7 @@ struct Dinic
         adj.assign(n, vector<int>());
         ptr.assign(n, 0);
     }
-    void add_edge(int a, int b, int c)
+    void addEdge(int a, int b, int c)
     {
         int k = e.size();
         e.push_back({a, b, c, 0});
