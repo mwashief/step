@@ -31,6 +31,7 @@
             "using pii = pair<int, int>;",
             "using pll = pair<ll, ll>;",
             "using vi = vector<int>;",
+            "using vvi = vector<vector<int>>;",
             "using vl = vector<ll>;",
             "using vpii = vector<pair<int, int>>;",
             "using mii = map<int, int>;",
