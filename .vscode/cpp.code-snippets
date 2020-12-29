@@ -33,6 +33,7 @@
             "using vb = vector<bool>;",
             "using vi = vector<int>;",
             "using vl = vector<ll>;",
+            "using vvb = vector<vector<bool>>;",
             "using vvi = vector<vector<int>>;",
             "using vvl = vector<vector<ll>>;",
             "using vpii = vector<pair<int, int>>;",
@@ -83,7 +84,7 @@
             "run_tests"
         ],
         "body": [
-            "void run_tests()",
+            "inline void run_tests()",
             "{\n\t$0\n}"
         ],
         "description": "Creates test case utility"
