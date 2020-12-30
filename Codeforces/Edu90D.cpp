@@ -1,0 +1,131 @@
+/*
+    Washief Hossain Mugdho
+    30 December 2020
+    Codeforces Edu90D
+*/
+
+#ifndef DEBUG
+#pragma GCC optimize("O2")
+#endif
+
+#include <bits/stdc++.h>
+#define pb push_back
+#define mp make_pair
+#define fr first
+#define sc second
+#define fastio ios_base::sync_with_stdio(0)
+#define untie cin.tie(0)
+#define rep(i, n) for (int i = 0; i < n; i++)
+#define repe(i, n) for (int i = 1; i <= n; i++)
+#define rrep(i, n) for (int i = n - 1; i >= 0; i--)
+#define rrepe(i, n) for (int i = n; i > 0; i--)
+#define ms(a, b) memset(a, b, sizeof a)
+#define MOD 1000000007
+
+typedef long long ll;
+typedef unsigned long long ull;
+
+using namespace std;
+using pii = pair<int, int>;
+using pll = pair<ll, ll>;
+using vb = vector<bool>;
+using vi = vector<int>;
+using vl = vector<ll>;
+using vvb = vector<vector<bool>>;
+using vvi = vector<vector<int>>;
+using vvl = vector<vector<ll>>;
+using vpii = vector<pair<int, int>>;
+using mii = map<int, int>;
+
+/***********IO Utility**************/
+template <typename... ArgTypes>
+void print(ArgTypes... args);
+template <typename... ArgTypes>
+void input(ArgTypes &... args);
+template <>
+void print() {}
+template <>
+void input() {}
+template <typename T, typename... ArgTypes>
+void print(T t, ArgTypes... args)
+{
+    cout << t;
+    print(args...);
+}
+template <typename T, typename... ArgTypes>
+void input(T &t, ArgTypes &... args)
+{
+    cin >> t;
+    input(args...);
+}
+vvl memo;
+int n;
+vi arr;
+
+ll dp1(int now, int inverted) //inverting starts from odd position
+{
+    if (now >= n)
+        return 0;
+    if (memo[now][inverted] != -1)
+        return memo[now][inverted];
+    if (now & 1)
+    {
+        ll b = 0;
+        if (now != n - 3)
+            b = dp1(now + 2, 1);
+        return memo[now][1] = arr[now] + max(b, dp1(now + 3, 1));
+    }
+
+    if (inverted)
+        return memo[now][1] = arr[now] + dp1(now + 2, 1);
+    ll b = 0;
+    if (n - 1 - now >= 2)
+        b = dp1(now + 1, 1);
+    return memo[now][0] = arr[now] + max(dp1(now + 2, 0), b);
+}
+
+ll dp2(int now, int inverted) //inverting starts from even position
+{
+    if (now >= n)
+        return 0;
+    if (memo[now][inverted] != -1)
+        return memo[now][inverted];
+    if (now & 1)
+        return memo[now][1] = arr[now] + max(dp2(now + 2, 1), dp2(now + 1, 1));
+
+    if (inverted)
+        return memo[now][1] = arr[now] + dp2(now + 2, 1);
+    ll b = 0;
+    if (n - 1 - now >= 1)
+        b = dp2(now + 1, 1);
+    return memo[now][0] = max(arr[now] + dp2(now + 2, 0), b);
+}
+
+inline void run_tests()
+{
+    cin >> n;
+    memo = vvl(n, vl(2, -1));
+    arr = vi(n);
+    rep(i, n) cin >> arr[i];
+    ll a = dp1(0, 0);
+    memo = vvl(n, vl(2, -1));
+    ll b = dp2(0, 0);
+    cout << max(a, b) << endl;
+}
+
+int main()
+{
+    fastio;
+    untie;
+#ifdef LOCAL_OUTPUT
+    freopen(LOCAL_OUTPUT, "w", stdout);
+#endif
+#ifdef LOCAL_INPUT
+    freopen(LOCAL_INPUT, "r", stdin);
+#endif
+
+    int tc;
+    cin >> tc;
+    while (tc--)
+        run_tests();
+}
