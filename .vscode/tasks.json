@@ -32,7 +32,7 @@
         {
             "type": "shell",
             "label": "Clean junks",
-            "command": "find . ! -path \"*/.git/*\" \\( -name '*.class' -or -name '*.exe' -or ! -name \"*.*\" -or -name \"tempCodeRunnerFile.cpp\" \\) -type f -delete",
+            "command": "find . ! -path \"*/.git/*\" \\( -name '*.class' -or -name '*.prob' -or -name '*.exe' -or ! -name \"*.*\" -or -name \"tempCodeRunnerFile.cpp\" \\) -type f -delete",
             "windows": {
                 "command": "del",
                 "args": [
@@ -40,6 +40,7 @@
                     "/q",
                     "*.exe",
                     "*.class",
+                    "*.prob",
                     "tempCodeRunnerFile.cpp"
                 ]
             },

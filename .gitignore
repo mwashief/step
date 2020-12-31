@@ -13,5 +13,6 @@
 *.o
 *.so
 *.dat
+*.prob
 tempCodeRunnerFile*
 test*
