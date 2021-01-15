@@ -58,11 +58,6 @@ void input(T &t, ArgTypes &... args)
     cin >> t;
     input(args...);
 }
-int n, m;
-string s;
-vi h;
-vi l;
-vi c;
 
 inline void run_tests()
 {
