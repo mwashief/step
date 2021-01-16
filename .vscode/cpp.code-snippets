@@ -56,7 +56,7 @@
             "{\n\tcin >> t;",
             "\tinput(args...);\n}",
             "\n\nint main()",
-            "{\n\tfastio;\n\tuntie;",
+            "{\n\tfastio;",
             "#ifdef LOCAL_OUTPUT",
             "\tfreopen(LOCAL_OUTPUT, \"w\", stdout);",
             "#endif",
