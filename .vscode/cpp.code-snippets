@@ -72,10 +72,10 @@
             "testcase"
         ],
         "body": [
-            "int tc;",
-            "cin >> tc;",
-            "while (tc--)",
-            "\trun_tests();\n"
+            "int __;",
+            "cin >> __;",
+            "while (__--)",
+            "\t_();\n"
         ],
         "description": "Creates test case utility"
     },
@@ -84,7 +84,7 @@
             "run_tests"
         ],
         "body": [
-            "inline void run_tests()",
+            "inline void _()",
             "{\n\t$0\n}"
         ],
         "description": "Creates test case utility"
