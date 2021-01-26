@@ -1,7 +1,7 @@
 /*
     Washief Hossain Mugdho
-    25 January 2021
-    697Div3 F
+    26 January 2021
+    Codeforces 1185D
 */
 
 #ifndef DEBUG
@@ -58,44 +58,6 @@ void input(T &t, ArgTypes &...args)
     cin >> t;
     input(args...);
 }
-int n;
-bool check1(vb &x, vb &y)
-{
-    rep(i, n) if (x[i] != y[i]) return 0;
-    return 1;
-}
-bool check2(vb &x, vb &y)
-{
-    rep(i, n) if (x[i] == y[i]) return 0;
-    return 1;
-}
-
-inline void _()
-{
-    cin >> n;
-    vvb a(n, vb(n, 0));
-    rep(i, n) rep(j, n)
-    {
-        char c;
-        cin >> c;
-        if (c == '1')
-            a[i][j] = 1;
-    }
-    rep(i, n) rep(j, n)
-    {
-        char c;
-        cin >> c;
-        if (c == '1')
-            a[i][j] = a[i][j] ^ 1;
-    }
-    repe(i, n - 1) if (!(check1(a[0], a[i]) || check2(a[0], a[i])))
-    {
-        cout << "NO" << endl;
-        return;
-    }
-
-    cout << "YES" << endl;
-}
 
 int main()
 {
@@ -106,8 +68,64 @@ int main()
 #ifdef LOCAL_INPUT
     freopen(LOCAL_INPUT, "r", stdin);
 #endif
-    int __;
-    cin >> __;
-    while (__--)
-        _();
+
+    int n;
+    cin >> n;
+    vpii a(n);
+    rep(i, n)
+    {
+        cin >> a[i].fr;
+        a[i].sc = i + 1;
+    }
+    sort(a.begin(), a.end());
+    vi prefix(n), suffix(n);
+    prefix[1] = a[1].fr - a[0].fr;
+    suffix[n - 2] = a[n - 1].fr - a[n - 2].fr;
+    for (int i = 2; i < n; i++)
+    {
+        if (prefix[i - 1] == -1)
+            prefix[i] = -1;
+        else
+        {
+            if (a[i].fr - a[i - 1].fr == prefix[i - 1])
+                prefix[i] = prefix[i - 1];
+            else
+                prefix[i] = -1;
+        }
+    }
+    for (int i = n - 3; i >= 0; i--)
+    {
+        if (suffix[i + 1] == -1)
+            suffix[i] = -1;
+        else
+        {
+            if (a[i + 1].fr - a[i].fr == suffix[i + 1])
+                suffix[i] = suffix[i + 1];
+            else
+                suffix[i] = -1;
+        }
+    }
+    if (prefix[n - 2] != -1)
+    {
+        cout << a[n - 1].sc << endl;
+        return 0;
+    }
+    if (suffix[1] != -1)
+    {
+        cout << a[0].sc << endl;
+        return 0;
+    }
+    prefix[0] = suffix[n - 2];
+    suffix[n - 1] = prefix[1];
+    for (int i = 1; i < n - 1; i++)
+    {
+        if (prefix[i - 1] == -1 || suffix[i + 1] == -1)
+            continue;
+        if (prefix[i - 1] == suffix[i + 1] && a[i - 1].fr + prefix[i - 1] == a[i + 1].fr)
+        {
+            cout << a[i].sc << endl;
+            return 0;
+        }
+    }
+    cout << -1 << endl;
 }
