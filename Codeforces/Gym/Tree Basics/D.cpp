@@ -83,21 +83,14 @@ int getLCA(int a, int b)
     b = lift(b, d[b][0] - d[a][0]);
     if (a == b)
         return a;
-    int lHeight = 0;
-    int hHeight = d[a][0];
-    while (lHeight < hHeight)
+    for (int i = 21; i >= 0; i--)
     {
-        int mid = (lHeight + hHeight) / 2;
-        int jump = hHeight - mid;
-        int g = lift(a, jump);
-        int h = lift(b, jump);
-        if (g == h)
-            lHeight = mid + 1;
-        else
+        int g = d[a][i];
+        int h = d[b][i];
+        if (g != h)
         {
             a = g;
             b = h;
-            hHeight = d[a][0];
         }
     }
     return d[a][1];
