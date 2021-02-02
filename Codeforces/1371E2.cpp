@@ -61,18 +61,28 @@ void input(T &t, ArgTypes &...args)
 ll n, p;
 vi a;
 
-bool f(int x)
+int findMin(int x)
 {
+    int res = INT32_MAX;
     for (ll i = 0; i < n; i++)
     {
-        ll ins = upper_bound(a.begin(), a.end(), x + i) - a.begin();
+        int ins = upper_bound(a.begin(), a.end(), x + i) - a.begin();
         ins -= i;
-        if (ins <= 0LL)
-            return false;
-        if (ins >= p)
-            return false;
+        res = min(res, ins);
     }
-    return true;
+    return res;
+}
+
+int findMax(int x)
+{
+    int res = INT32_MIN;
+    for (ll i = 0; i < n; i++)
+    {
+        int ins = upper_bound(a.begin(), a.end(), x + i) - a.begin();
+        ins -= i;
+        res = max(res, ins);
+    }
+    return res;
 }
 
 int main()
@@ -88,11 +98,30 @@ int main()
     a = vi(n);
     rep(i, n) cin >> a[i];
     sort(a.begin(), a.end());
-    vi res;
-    rep(i, 2001) if (f(i))
-        res.pb(i);
-    cout << res.size() << endl;
-    for (auto r : res)
-        cout << r << " ";
+    int l = 1, r = 1000000000;
+    while (l < r)
+    {
+        int mid = (l + r) >> 1;
+        if (findMin(mid) <= 0)
+            l = mid + 1;
+        else
+            r = mid;
+    }
+    int lowest = l;
+
+    r = 1000000000;
+    while (l < r)
+    {
+        int mid = (l + r + 1) >> 1;
+        if (findMax(mid) >= p)
+            r = mid - 1;
+        else
+            l = mid;
+    }
+    if (findMax(l) >= p)
+        l--;
+    cout << l - lowest + 1 << endl;
+    for (int i = lowest; i <= l; i++)
+        cout << i << " ";
     cout << endl;
 }
