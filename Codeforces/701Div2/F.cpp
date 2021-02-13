@@ -59,18 +59,17 @@ void input(T &t, ArgTypes &...args)
     input(args...);
 }
 int n;
-vl arr;
 inline void _()
 {
     cin >> n;
-    map<ll, ll> prefix;
-    prefix[0] = 1;
-    ll offset = 0;
-    ll res = 1LL;
+    map<ll, int> prefix;
+    prefix[0LL] = 1;
+    ll offset = 0LL;
+    int res = 1;
     rep(k, n)
     {
         ll x;
-        ll tempres = res;
+        int tempres = res;
         cin >> x;
         res = 2LL * res % MOD;
         res = (res + MOD - prefix[-offset]) % MOD;
