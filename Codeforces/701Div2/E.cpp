@@ -59,7 +59,7 @@ void input(T &t, ArgTypes &...args)
     input(args...);
 }
 int n;
-vector<unordered_set<int>> child;
+vvi child;
 vvi levelWise;
 vi levelMax, levelMin;
 vi cost;
@@ -77,7 +77,7 @@ void dfs(int node, int level)
 inline void _()
 {
     cin >> n;
-    child = vector<unordered_set<int>>(n);
+    child = vvi(n, vi());
     levelWise.clear();
     cost = vi(n);
     memo = vl(n);
@@ -88,7 +88,7 @@ inline void _()
         int x;
         cin >> x;
         x--;
-        child[x].insert(i);
+        child[x].pb(i);
     }
     repe(i, n - 1) cin >> cost[i];
     dfs(0, 0);
