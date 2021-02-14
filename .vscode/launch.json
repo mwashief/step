@@ -3,6 +3,20 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Launch Main",
+      "request": "launch",
+      "mainClass": "Main",
+      "projectName": "Step_8c5c15b4"
+    },
+    {
+      "type": "java",
+      "name": "Launch _1244C",
+      "request": "launch",
+      "mainClass": "_1244C",
+      "projectName": "Step_8c5c15b4"
+    },
+    {
+      "type": "java",
       "name": "CodeLens (Launch) - _623",
       "request": "launch",
       "mainClass": "_623",
