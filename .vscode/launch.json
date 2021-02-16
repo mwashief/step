@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Launch jam",
+      "request": "launch",
+      "mainClass": "jam",
+      "projectName": "Step_8c5c15b4"
+    },
+    {
+      "type": "java",
       "name": "Launch Jam",
       "request": "launch",
       "mainClass": "Jam",
