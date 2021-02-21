@@ -124,11 +124,12 @@
         "less": "cd $dir && lessc $fileName $fileNameWithoutExt.css"
     },
     "actionButtons": {
-        "defaultColor": "#ffffff", // Can also use string color names.
+        "defaultColor": "#000000", // Can also use string color names.
         "loadNpmCommands": false, // Disables automatic generation of actions for npm commands.
         "commands": [
             {
                 "name": "Codeforces",
+                "color": "#BBCC99",
                 "singleInstance": true,
                 "command": "javac Codeforces.java && java Codeforces", // This is executed in the terminal.
             }
