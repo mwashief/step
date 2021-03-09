@@ -10,7 +10,7 @@
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "${fileDirname}/${fileBasenameNoExtension}.out"
             ],
             "windows": {
                 "args": [
@@ -32,7 +32,7 @@
         {
             "type": "shell",
             "label": "Clean junks",
-            "command": "clean_junk.sh",
+            "command": "./clean_junk.sh",
             "windows": {
                 "command": "clean_junk.bat",
             },

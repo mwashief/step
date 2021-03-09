@@ -38,7 +38,7 @@ public class Codeforces {
             return;
         }
         System.out.println(ANSI_GREEN + "Contest: " + contest + " Problem : " + problem + ANSI_RESET);
-        String dir = System.getProperty("user.dir") + "\\Codeforces\\" + contest;
+        String dir = System.getProperty("user.dir") + "/Codeforces/" + contest;
 
         if (Files.isDirectory(Paths.get(dir)))
             System.out.println(ANSI_BLUE + contest + " contest folder already exists." + ANSI_RESET);
@@ -48,7 +48,7 @@ public class Codeforces {
             System.out.println(ANSI_CYAN + contest + " contest folder created." + ANSI_RESET);
         }
 
-        dir = dir + "\\" + problemID + ".cpp";
+        dir = dir + "/" + problemID + ".cpp";
 
         if (Files.exists(Paths.get(dir)))
             System.out.println(ANSI_BLUE + problemID + ".cpp already exists." + ANSI_RESET);
@@ -56,7 +56,12 @@ public class Codeforces {
             Files.createFile(Paths.get(dir));
             System.out.println(ANSI_CYAN + problemID + ".cpp created." + ANSI_RESET);
         }
+        String os = System.getProperty("os.name");
+
         String[] fargs = new String[] { "cmd.exe", "/c", "code", dir };
+        if (os.equalsIgnoreCase("Linux"))
+            fargs = new String[] { fargs[2], fargs[3] };
+
         new ProcessBuilder(fargs).start();
     }
 }
