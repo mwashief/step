@@ -62,7 +62,7 @@ int k;
 vi parent, c;
 vvi a;
 
-void makeTree(int par, unordered_set<int> &leaves)
+void makeTree(int par, vector<int> &leaves)
 {
     if (leaves.size() == 1)
     {
@@ -72,30 +72,30 @@ void makeTree(int par, unordered_set<int> &leaves)
         return;
     }
     int maximum = 0;
-    rep(i, k) if (leaves.find(i) != leaves.end()) for (int j = i + 1; j < k; j++) if (leaves.find(j) != leaves.end())
-        maximum = max(maximum, a[i][j]);
+    rep(i, leaves.size()) for (int j = i + 1; j < leaves.size(); j++)
+        maximum = max(maximum, a[leaves[i]][leaves[j]]);
 
-    vector<unordered_set<int>> subTrees;
+    vector<vector<int>> subTrees;
     for (auto d : leaves)
     {
         if (subTrees.size() == 0)
         {
-            subTrees.pb(unordered_set<int>());
-            subTrees.back().insert(d);
+            subTrees.pb(vector<int>());
+            subTrees.back().pb(d);
             continue;
         }
         bool newTree = true;
-        for (unordered_set<int> &sub : subTrees)
+        for (vector<int> &sub : subTrees)
             if (a[*sub.begin()][d] < maximum)
             {
                 newTree = false;
-                sub.insert(d);
+                sub.pb(d);
                 break;
             }
         if (newTree)
         {
-            subTrees.pb(unordered_set<int>());
-            subTrees.back().insert(d);
+            subTrees.pb(vector<int>());
+            subTrees.back().pb(d);
         }
     }
     int id = parent.size();
@@ -118,11 +118,11 @@ int main()
     a = vvi(k, vi(k));
     c = vi(k);
     parent = vi(k);
-    unordered_set<int> leaves;
+    vector<int> leaves;
     rep(i, k)
     {
         rep(j, k) cin >> a[i][j];
-        leaves.insert(i);
+        leaves.pb(i);
     }
     makeTree(-1, leaves);
     cout << c.size() << endl;
