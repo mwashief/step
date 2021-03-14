@@ -72,7 +72,10 @@
         "streambuf": "cpp",
         "thread": "cpp",
         "typeindex": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "any": "cpp",
+        "bit": "cpp",
+        "variant": "cpp"
     },
     "C_Cpp.clang_format_style": "Emulated Visual Studio",
     // "cpp": "cd $dir && g++ -DLOCAL_OUTPUT=\\\"/mnt/01D61CD5AE35EDF0/Step/IO/output.dat\\\" -DLOCAL_INPUT=\\\"/mnt/01D61CD5AE35EDF0/Step/IO/input.dat\\\" $fileName -o $fileNameWithoutExt.out && $dir$fileNameWithoutExt.out"
