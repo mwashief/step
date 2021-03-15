@@ -44,7 +44,7 @@ public class CppCompile {
                 path = "";
             }
 
-            String[] fargs = new String[] { "g++",
+            String[] fargs = new String[] { "g++", "-std=c++17",
                     "-DLOCAL_OUTPUT=\"" + System.getProperty("user.dir") + "/IO/output.dat\"",
                     "-DLOCAL_INPUT=\"" + System.getProperty("user.dir") + "/IO/input.dat\"",
                     path + "/" + file + "." + extension, "-o", path + "/" + file + ".out" };
