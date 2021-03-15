@@ -7,7 +7,7 @@
             "$BLOCK_COMMENT_START",
             "\tWashief Hossain Mugdho",
             "\t$CURRENT_DATE $CURRENT_MONTH_NAME $CURRENT_YEAR",
-            "\t${TM_FILENAME_BASE}",
+            "   ${TM_DIRECTORY/(.*Step)*([\\/\\\\])/ /g} ${TM_FILENAME_BASE}",
             "$BLOCK_COMMENT_END\n",
             "#ifndef DEBUG",
             "#pragma GCC optimize(\"O2\")",
