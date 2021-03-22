@@ -1,7 +1,7 @@
 /*
     Washief Hossain Mugdho
-    18 March 2021
-    Codeforces 1499 1499B
+    21 March 2021
+    Codeforces 1491 1491D
 */
 
 #ifndef DEBUG
@@ -58,43 +58,40 @@ void input(T &t, ArgTypes &...args)
     cin >> t;
     input(args...);
 }
-string s;
-vector<vvi> memo;
-
-bool dp(int pos, int phase, int must)
-{
-    if (pos >= s.size())
-        return 1;
-    if (memo[pos][phase][must] != -1)
-        return memo[pos][phase][must];
-    int c = s[pos] - '0';
-    if (must)
-    {
-        if (c != phase)
-            return memo[pos][phase][must] = 0;
-        if (phase)
-            return memo[pos][phase][must] = dp(pos + 1, 1, 0);
-        return memo[pos][phase][must] = dp(pos + 1, 0, 0) | dp(pos + 1, 1, 0);
-    }
-    if (phase)
-    {
-        if (c)
-            return memo[pos][phase][must] = dp(pos + 1, 1, 1) | dp(pos + 1, 1, 0);
-        return memo[pos][phase][must] = dp(pos + 1, 1, 1);
-    }
-    if (c)
-        return memo[pos][phase][must] = dp(pos + 1, 0, 1) | dp(pos + 1, 1, 0);
-    return memo[pos][phase][must] = dp(pos + 1, 0, 0) | dp(pos + 1, 0, 1) | dp(pos + 1, 1, 0) | dp(pos + 1, 1, 1);
-}
 
 inline void _()
 {
-    cin >> s;
-    memo = vector<vvi>(s.size(), vvi(2, vi(2, -1)));
-    if (dp(0, 0, 0) | dp(0, 1, 0))
-        cout << "YES" << endl;
-    else
+    ll a, b;
+    cin >> a >> b;
+    if (a > b)
+    {
         cout << "NO" << endl;
+        return;
+    }
+    vi aOnes(35), bOnes(35);
+    rep(i, 32)
+    {
+        if (a & (1LL << i))
+            aOnes[i] = 1;
+        if (b & (1LL << i))
+            bOnes[i] = 1;
+    }
+    repe(i, 32)
+    {
+        aOnes[i] += aOnes[i - 1];
+        bOnes[i] += bOnes[i - 1];
+    }
+    rep(i, 33)
+    {
+        if (!(b & (1LL << i)))
+            continue;
+        if (bOnes[i] > aOnes[i])
+        {
+            cout << "NO" << endl;
+            return;
+        }
+    }
+    cout << "YES" << endl;
 }
 
 int main()
