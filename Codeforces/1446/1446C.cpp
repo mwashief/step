@@ -1,7 +1,7 @@
 /*
     Washief Hossain Mugdho
-    22 March 2021
-    Codeforces 1442 1442A
+    23 March 2021
+    Codeforces 1446 1446C
 */
 
 #ifndef DEBUG
@@ -59,27 +59,22 @@ void input(T &t, ArgTypes &...args)
     input(args...);
 }
 
-inline void _()
+int traverse(int level, vi &l)
 {
-    int n, now, b, c = 0;
-    cin >> n;
-    cin >> b;
-    repe(i, n - 1)
-    {
-        cin >> now;
-        int yy = c;
-        int xx = now - yy;
-        int gap = max(0, xx - b);
-        xx -= gap;
-        yy += gap;
-        b = xx;
-        c = yy;
-    }
-    if (b >= 0)
-        cout << "YES";
-    else
-        cout << "NO";
-    cout << endl;
+    if (l.size() <= 2 || level == 0)
+        return l.size();
+    vi ones, zeros;
+    for (auto x : l)
+        if (x & (1 << level))
+            ones.pb(x);
+        else
+            zeros.pb(x);
+
+    if (ones.size() == 0 || zeros.size() == 0)
+        return traverse(level - 1, l);
+
+    int a = traverse(level - 1, zeros), b = traverse(level - 1, ones);
+    return max(a, b) + 1;
 }
 
 int main()
@@ -91,8 +86,9 @@ int main()
 #ifdef LOCAL_INPUT
     freopen(LOCAL_INPUT, "r", stdin);
 #endif
-    int __;
-    cin >> __;
-    while (__--)
-        _();
+    int n;
+    cin >> n;
+    vi a(n);
+    rep(i, n) cin >> a[i];
+    cout << n - traverse(29, a) << endl;
 }
