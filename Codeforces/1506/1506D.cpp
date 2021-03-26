@@ -63,20 +63,19 @@ inline void _()
 {
     int n;
     cin >> n;
-    unordered_map<int, int> um;
+    map<int, int> um;
     rep(i, n)
     {
         int x;
         cin >> x;
         um[x]++;
     }
-    vi all;
+    int mm = 0;
     for (auto d : um)
-        all.pb(d.sc);
-    sort(all.begin(), all.end());
-    if (all.back() >= n - all.back())
+        mm = max(mm, d.sc);
+    if (mm >= n - mm)
     {
-        cout << 2 * all.back() - n << endl;
+        cout << 2 * mm - n << endl;
     }
     else if (n & 1)
         cout << 1 << endl;
