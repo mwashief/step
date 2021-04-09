@@ -1,7 +1,7 @@
 /*
     Washief Hossain Mugdho
-    27 March 2021
-    Algorithm FST
+    09 April 2021
+    Codeforces 1461 1461E
 */
 
 #ifndef DEBUG
@@ -20,6 +20,8 @@
 #define rrep(i, n) for (int i = n - 1; i >= 0; i--)
 #define rrepe(i, n) for (int i = n; i > 0; i--)
 #define ms(a, b) memset(a, b, sizeof a)
+#define yes cout << "Yes"
+#define no cout << "No"
 #define MOD 1000000007
 
 typedef long long ll;
@@ -36,6 +38,9 @@ using vvi = vector<vector<int>>;
 using vvl = vector<vector<ll>>;
 using vpii = vector<pair<int, int>>;
 using mii = map<int, int>;
+using umii = unordered_map<int, int>;
+using seti = set<int>;
+using useti = unordered_set<int>;
 
 /***********IO Utility**************/
 template <typename... ArgTypes>
@@ -59,59 +64,65 @@ void input(T &t, ArgTypes &...args)
     input(args...);
 }
 
-template <class T>
-class SegmentTree
-{
-    vector<T> t;
-    void build()
-    {
-        for (int i = n - 1; i > 0; --i)
-            t[i] = t[i << 1] + t[i << 1 | 1];
-    }
-
-public:
-    int n;
-
-    SegmentTree(int nn)
-    {
-        n = nn;
-        t = vector<T>(n << 1);
-    }
-
-    SegmentTree(vector<T> v)
-    {
-        n = v.size();
-        t = vector<T>(n << 1);
-        for (int i = 0; i < n; ++i)
-            t[i + n] = v[i];
-        build();
-    }
-
-    void update(int p, int value)
-    {
-        for (t[p += n] = value; p > 1; p >>= 1)
-            t[p >> 1] = t[p] + t[p ^ 1];
-    }
-
-    T query(int l, int r)
-    {
-        r++;
-        T res = 0;
-        for (l += n, r += n; l < r; l >>= 1, r >>= 1)
-        {
-            if (l & 1)
-                res += t[l++];
-            if (r & 1)
-                res += t[--r];
-        }
-        return res;
-    }
-};
-
 int main()
 {
-    SegmentTree<int> ss(10);
-    ss.update(2, 5);
-    ss.update(0, 3);
-    cout << ss.query(0, 3) << endl;
+    fastio;
+#ifdef LOCAL_OUTPUT
+    freopen(LOCAL_OUTPUT, "w", stdout);
+#endif
+#ifdef LOCAL_INPUT
+    freopen(LOCAL_INPUT, "r", stdin);
+#endif
+    ll k, l, r, t, x, y;
+    cin >> k >> l >> r >> t >> x >> y;
+    k -= l;
+    r -= l;
+    if (x > y)
+    {
+        if (k + y <= r)
+            k += r;
+        if (k >= x)
+        {
+            k -= x;
+            t--;
+        }
+        else
+        {
+            no;
+            return 0;
+        }
+        ll rate = x - y;
+        t -= k / rate;
+        if (t <= 0LL)
+            yes;
+        else
+            no;
+    }
+    else
+    {
+        if (r >= x + y)
+        {
+            yes;
+            return 0;
+        }
+        vb visited(x);
+        if (k < x)
+            visited[k] = 1;
+        rep(i, x + 1)
+        {
+            if (k + y <= r)
+                k += y;
+            if (k < x)
+                break;
+            t -= k / x;
+            k %= x;
+            if (visited[k] || t <= 0LL)
+            {
+                yes;
+                return 0;
+            }
+            visited[k] = true;
+        }
+        no;
+    }
 }
