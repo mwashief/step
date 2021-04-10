@@ -59,14 +59,14 @@ void input(T &t, ArgTypes &...args)
     input(args...);
 }
 
-template <class T>
+template <class T, class OP>
 class SegmentTree
 {
     vector<T> t;
     void build()
     {
         for (int i = n - 1; i > 0; --i)
-            t[i] = t[i << 1] + t[i << 1 | 1];
+            t[i] = OP()(t[i << 1], t[i << 1 | 1]);
     }
 
 public:
@@ -90,28 +90,63 @@ public:
     void update(int p, int value)
     {
         for (t[p += n] = value; p > 1; p >>= 1)
-            t[p >> 1] = t[p] + t[p ^ 1];
+            t[p >> 1] = OP()(t[p], t[p ^ 1]);
     }
 
     T query(int l, int r)
     {
         r++;
-        T res = 0;
+        T res = OP::initVal;
         for (l += n, r += n; l < r; l >>= 1, r >>= 1)
         {
             if (l & 1)
-                res += t[l++];
+                res = OP()(res, t[l++]);
             if (r & 1)
-                res += t[--r];
+                res = OP()(res, t[--r]);
         }
         return res;
     }
 };
 
+template <class T>
+class Max
+{
+public:
+    static const T initVal = numeric_limits<T>::min();
+    T operator()(T x, T y)
+    {
+        return max(x, y);
+    }
+};
+
+template <class T>
+class Min
+{
+public:
+    static const T initVal = numeric_limits<T>::max();
+    T operator()(T x, T y)
+    {
+        return min(x, y);
+    }
+};
+
+template <class T>
+class Add
+{
+public:
+    static const T initVal = T(0);
+    T operator()(T x, T y)
+    {
+        return x + y;
+    }
+};
+
 int main()
 {
-    SegmentTree<int> ss(10);
-    ss.update(2, 5);
-    ss.update(0, 3);
-    cout << ss.query(0, 3) << endl;
+    vi a = {54, 756, 674, 6, 26, 23, 625, 624, 56, 246, 254, 437, 47};
+    SegmentTree<int, Add<int>> ss(a);
+    rep(i, a.size()) for (int j = i + 1; j < a.size(); j++)
+    {
+        cout << i << ", " << j << ": " << ss.query(i, j) << endl;
+    }
 }
