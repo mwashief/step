@@ -66,7 +66,18 @@ vvi adj;
 vi downMemo;
 vi upMemo;
 vi parent;
-vector<multiset<int>> downs;
+vector<pii> downs;
+
+void check(int &x, int &y, int c)
+{
+    if (c >= x)
+    {
+        y = x;
+        x = c;
+    }
+    else if (c > y)
+        y = c;
+}
 
 int downDp(int node, int par)
 {
@@ -75,10 +86,12 @@ int downDp(int node, int par)
         return downMemo[node];
     for (auto a : adj[node])
         if (a != parent[node])
-            downs[node].insert(downDp(a, node));
-    if (downs[node].size() == 0)
+            check(downs[node].fr, downs[node].sc, downDp(a, node));
+
+    if (adj[node].size() == 1)
         return downMemo[node] = 1;
-    return downMemo[node] = downs[node].size() + *downs[node].rbegin();
+    int sz = adj[node].size() - (par != -1);
+    return downMemo[node] = sz + downs[node].fr;
 }
 
 int upDp(int node)
@@ -94,22 +107,19 @@ int upDp(int node)
         cc++;
         x = max(x, upDp(now));
     }
+    int sz = adj[now].size() - (parent[now] != -1);
 
-    if (*downs[now].rbegin() == self)
+    if (downs[now].fr == self)
     {
-        if (downs[now].size() >= 2)
-        {
-            auto it = downs[now].rbegin();
-            it++;
-            x = max(x, *it);
-        }
+        if (sz >= 2)
+            x = max(x, downs[now].sc);
         else
             return upMemo[node] = 1 + x;
     }
     else
-        x = max(x, *downs[now].rbegin());
+        x = max(x, downs[now].fr);
 
-    return upMemo[node] = cc + downs[now].size() + x - 1;
+    return upMemo[node] = cc + sz + x - 1;
 }
 
 inline void _()
@@ -119,7 +129,7 @@ inline void _()
     downMemo = vi(n);
     upMemo = vi(n);
     parent = vi(n);
-    downs = vector<multiset<int>>(n, multiset<int>());
+    downs = vector<pii>(n, {0, 0});
 
     rep(i, n - 1)
     {
@@ -143,27 +153,13 @@ inline void _()
         if (node)
         {
             k++;
-            int d = upDp(node);
-            if (d >= x)
-            {
-                y = x;
-                x = d;
-            }
-            else if (d > y)
-                y = d;
+            check(x, y, upDp(node));
         }
         for (auto a : adj[node])
             if (a != parent[node])
             {
                 k++;
-                int d = downMemo[a];
-                if (d >= x)
-                {
-                    y = x;
-                    x = d;
-                }
-                else if (d > y)
-                    y = d;
+                check(x, y, downMemo[a]);
             }
 
         if (k >= 2)
