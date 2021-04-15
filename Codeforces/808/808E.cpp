@@ -86,7 +86,7 @@ ll dp(int state, int remaining)
     }
     int l = 0;
     int r = min(remaining / (state + 1), (int)cost[state].size());
-    while (r - l > 100)
+    while (r - l > 5)
     {
         int mid1 = (r - l) / 3;
         int mid2 = l + 2 * mid1;
