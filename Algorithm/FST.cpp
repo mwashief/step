@@ -87,7 +87,7 @@ public:
         build();
     }
 
-    void update(int p, int value)
+    void update(int p, T value)
     {
         for (t[p += n] = value; p > 1; p >>= 1)
             t[p >> 1] = OP()(t[p], t[p ^ 1]);
