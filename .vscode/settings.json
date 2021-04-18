@@ -140,7 +140,6 @@
         ]
     },
     "code-runner.ignoreSelection": true,
-    "editor.autoClosingBrackets": "never",
     /*
     "workbench.colorCustomizations": {
         "activityBar.background": "#000000",
