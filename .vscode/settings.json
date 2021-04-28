@@ -136,6 +136,12 @@
                 "color": "#BBCC99",
                 "singleInstance": true,
                 "command": "java Codeforces.java", // This is executed in the terminal.
+            },
+            {
+                "name": "AtCoder",
+                "color": "#BBCC99",
+                "singleInstance": true,
+                "command": "java AtCoder.java", // This is executed in the terminal.
             }
         ]
     },
