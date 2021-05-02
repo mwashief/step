@@ -87,20 +87,13 @@ inline void _()
         return;
     }
     ll each = sum / n;
-    multiset<pii> all;
     vector<array<int, 3>> res;
-    repe(i, n - 1)
-        all.insert({i + 1 - a[i], i});
-
-    while (all.size() && a[0] >= all.begin()->fr)
+    rep(tt, 2) repe(i, n - 1)
     {
-        auto u = *all.begin();
-        all.erase(all.begin());
-        int i = u.sc;
-        ll need = ((ll)i + 1 - a[i] % (i + 1)) % (i + 1);
+        int need = (i + 1 - a[i] % (i + 1)) % (i + 1);
         if (a[0] >= need && need)
         {
-            res.pb((array<int, 3>){1, i + 1, (int)need});
+            res.pb((array<int, 3>){1, i + 1, need});
             a[0] -= need;
             a[i] += need;
         }
@@ -111,13 +104,11 @@ inline void _()
         int x = take / (i + 1);
         if (take)
             res.pb((array<int, 3>){i + 1, 1, x});
-        if (a[i])
-            all.insert({i + 1 - a[i], i});
-    }
-    if (a[0] != sum)
-    {
-        cout << -1 << endl;
-        return;
+        if (tt && a[i] > each)
+        {
+            cout << -1 << endl;
+            return;
+        }
     }
     repe(i, n - 1)
     {
