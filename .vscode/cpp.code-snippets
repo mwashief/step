@@ -252,7 +252,10 @@
             "        return y_combinator_result<std::decay_t<Fun>>(std::forward<Fun>(fun));",
             "    }",
             "",
-            "}"
+            "    template <class T>",
+            "    T &unmove(T &&t) { return t; }",
+            "",
+            "}",
         ],
         "description": "Y combinator class support"
     }
