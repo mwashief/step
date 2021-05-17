@@ -104,10 +104,7 @@ int main()
     rep(i, m)
     {
         ll ex = 1LL;
-        rep(j, a[i].size())
-        {
-            ex = 1LL * ex * C(a[i][j] - j, 1) % MOD;
-        }
+        rep(j, a[i].size()) ex = 1LL * ex * C(a[i][j] - j, 1) % MOD;
         ex = (fact[n] - ex + MOD) % MOD;
         ans = (ans + ex) % MOD;
     }
