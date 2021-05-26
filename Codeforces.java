@@ -12,6 +12,15 @@ public class Codeforces {
     public static final String ANSI_PURPLE = "\u001B[35m";
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_WHITE = "\u001B[37m";
+    public static int bundleSize = 250;
+
+    public static String getBundle(String contest)
+    {
+        int bundleNumber = (Integer.parseInt(contest) + bundleSize - 1) / bundleSize;
+        int end = bundleSize * bundleNumber;
+        int start = end - bundleSize + 1;
+        return String.valueOf(start) + "-" + String.valueOf(end);
+    }
 
     public static void main(String[] args) throws Exception {
         String problemID;
@@ -38,7 +47,7 @@ public class Codeforces {
             return;
         }
         System.out.println(ANSI_GREEN + "Contest: " + contest + " Problem : " + problem + ANSI_RESET);
-        String dir = System.getProperty("user.dir") + "/Codeforces/" + contest;
+        String dir = System.getProperty("user.dir") + "/Codeforces/" + getBundle(contest) + "/" + contest ;
 
         if (Files.isDirectory(Paths.get(dir)))
             System.out.println(ANSI_BLUE + contest + " contest folder already exists." + ANSI_RESET);
