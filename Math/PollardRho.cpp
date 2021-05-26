@@ -1,13 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-long long gcd(long long a, long long b)
-{
-    if (b == 0)
-        return a;
-    return gcd(b, a % b);
-}
-
 long long factorize(long long n)
 {
     if (n % 2 == 0)
@@ -19,7 +12,7 @@ long long factorize(long long n)
     {
         x = (x * x + 1) % n;
         y = ((y * y + 1) * (y * y + 1) + 1) % n;
-        g = gcd(abs(x - y), n);
+        g = __gcd(abs(x - y), n);
     }
     return g;
 }
@@ -37,5 +30,5 @@ void findAllFactors(long long n)
 
 int main()
 {
-    findAllFactors(13);
+    findAllFactors(260);
 }

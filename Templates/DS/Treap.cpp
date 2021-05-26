@@ -4,7 +4,8 @@ typedef long long ll;
 
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 uniform_int_distribution<int> uid(0, 1000000000);
-
+/** Taken from SecondThread
+ */
 class Treap
 {
 public:

@@ -155,6 +155,9 @@ public:
         this->n = n;
         tree = vector<T>(4 * n);
         lazy = vector<T>(4 * n);
+        //change here
+        vector<T> a(n);
+        build(a);
     }
 
     void build(vector<T> &a)
