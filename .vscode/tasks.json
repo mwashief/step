@@ -6,7 +6,7 @@
             "label": "C/C++: build active file",
             "command": "g++",
             "args": [
-                "-DDEBUG",
+                "-D__DEBUG__",
                 "-g",
                 "${file}",
                 "-o",
@@ -14,7 +14,7 @@
             ],
             "windows": {
                 "args": [
-                    "-DDEBUG",
+                    "-D__DEBUG__",
                     "-g",
                     "${file}",
                     "-o",
