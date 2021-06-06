@@ -149,7 +149,7 @@ public:
         for (auto child : edges[node])
             if (child.first != parent)
             {
-                depth[child] = depth[node] + 1;
+                depth[child.first] = depth[node] + 1;
                 dfs(child.first, node, child.second);
             }
     }
