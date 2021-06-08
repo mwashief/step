@@ -36,28 +36,8 @@
 #define endl "\n"
 #endif
 
-using namespace std;
-
 typedef long long ll;
 typedef unsigned long long ull;
-
-using pii = pair<int, int>;
-using pll = pair<ll, ll>;
-
-using vb = vector<bool>;
-using vi = vector<int>;
-using vl = vector<ll>;
-using vpii = vector<pair<int, int>>;
-
-using vvb = vector<vector<bool>>;
-using vvi = vector<vector<int>>;
-using vvl = vector<vector<ll>>;
-using vvpii = vector<vector<pair<int, int>>>;
-
-using mii = map<int, int>;
-using umii = unordered_map<int, int>;
-using seti = set<int>;
-using useti = unordered_set<int>;
 
 template <class T>
 T OP(T value1, T value2)
@@ -66,10 +46,6 @@ T OP(T value1, T value2)
     return max(value1, value2);
 }
 
-/*
- * Taken from galen's repository
- * Edited slightly
- */
 template <class T>
 class LCA
 {
@@ -124,7 +100,8 @@ public:
     void build(int v = 0)
     {
         depth[v] = 0;
-        dfs(v, -1, initialValue);
+        //dfs(v, -1, initialValue);
+        bfs(v);
     }
 
     void dfs(int node, int parent, T edge)
@@ -152,6 +129,41 @@ public:
                 depth[child.first] = depth[node] + 1;
                 dfs(child.first, node, child.second);
             }
+    }
+
+    void bfs(int node)
+    {
+        std::queue<tuple<int, int, T>> q;
+        q.push({node, -1, initialValue});
+        while (q.size())
+        {
+            auto u = q.front();
+            q.pop();
+            node = std::get<0>(u);
+            int parent = std::get<1>(u);
+            auto edge = std::get<2>(u);
+            lift[node][0] = parent;
+            value[node][0] = edge;
+            for (int i = 1; i < logHeight; i++)
+            {
+                if (lift[node][i - 1] == -1)
+                {
+                    lift[node][i] = -1;
+                    value[node][i] = value[node][i - 1];
+                }
+                else
+                {
+                    value[node][i] = OP(value[node][i - 1], value[lift[node][i - 1]][i - 1]);
+                    lift[node][i] = lift[lift[node][i - 1]][i - 1];
+                }
+            }
+            for (pair<int, T> &child : edges[node])
+                if (child.first != parent)
+                {
+                    depth[child.first] = depth[node] + 1;
+                    q.push({child.first, node, child.second});
+                }
+        }
     }
 
     int getAncestor(int node, int steps)
@@ -222,14 +234,4 @@ public:
 
 int main()
 {
-    fastio;
-#if !defined(__INTERACTIVE__) && !defined(__DEBUG__)
-    untie;
-#ifdef LOCAL_OUTPUT
-    freopen(LOCAL_OUTPUT, "w", stdout);
-#endif
-#ifdef LOCAL_INPUT
-    freopen(LOCAL_INPUT, "r", stdin);
-#endif
-#endif
 }
