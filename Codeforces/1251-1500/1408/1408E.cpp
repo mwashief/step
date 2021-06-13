@@ -1,7 +1,7 @@
 /*
     Washief Hossain Mugdho
-    06 June 2021
-    Templates DS DSU
+    13 June 2021
+    Codeforces 1251-1500 1408 1408E
 */
 
 #ifndef __DEBUG__
@@ -41,9 +41,24 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 
-/* DS : Disjoint Set Union
- * Elements are numbered from 0 to n-1
- */
+using pii = pair<int, int>;
+using pll = pair<ll, ll>;
+
+using vb = vector<bool>;
+using vi = vector<int>;
+using vl = vector<ll>;
+using vpii = vector<pair<int, int>>;
+
+using vvb = vector<vector<bool>>;
+using vvi = vector<vector<int>>;
+using vvl = vector<vector<ll>>;
+using vvpii = vector<vector<pair<int, int>>>;
+
+using mii = map<int, int>;
+using umii = unordered_map<int, int>;
+using seti = set<int>;
+using useti = unordered_set<int>;
+
 class DSU
 {
 public:
@@ -94,6 +109,30 @@ int main()
     freopen(LOCAL_INPUT, "r", stdin);
 #endif
 #endif
-    DSU dsu(10);
-    dsu.join(3, 5);
+    int n, m;
+    cin >> m >> n;
+    vi a(m), b(n);
+    rep(i, m) cin >> a[i];
+    rep(i, n) cin >> b[i];
+    vector<pair<int, pii>> edges;
+    rep(i, m)
+    {
+        int s;
+        cin >> s;
+        rep(j, s)
+        {
+            int d;
+            cin >> d;
+            d--;
+            edges.pb({a[i] + b[d], {i, m + d}});
+        }
+    }
+    sort(a2z(edges), [](pair<int, pii> x, pair<int, pii> y)
+         { return x.fr > y.fr; });
+    DSU dsu(n + m);
+    ll res = 0;
+    for (auto edge : edges)
+        if (!dsu.join(edge.sc.fr, edge.sc.sc))
+            res += (ll)edge.fr;
+    cout << res << endl;
 }
