@@ -71,61 +71,85 @@ void input(T &t, ArgTypes &...args)
     input(args...);
 }
 
-template <int m>
-struct mod
+template <int mod>
+struct Mod
 {
     long long x;
-    mod() : x(0) {}
-    mod(long long xx) : x(xx)
+    Mod() : x(0) {}
+    Mod(long long xx) : x(xx)
     {
-        if (abs(x) >= m)
-            x %= m;
+        if (abs(x) >= mod)
+            x %= mod;
         if (x < 0)
-            x += m;
+            x += mod;
     }
-    mod operator+(const mod &a) const
+    operator int() const { return x; }
+    operator long long() const { return x; }
+    Mod operator+(const Mod &a) const
     {
-        mod n;
+        Mod n;
         n.x = x + a.x;
-        if (n.x >= m)
-            n.x -= m;
+        if (n.x >= mod)
+            n.x -= mod;
         return n;
     }
-    mod operator-(const mod &a) const
+    Mod operator-(const Mod &a) const
     {
-        mod n;
+        Mod n;
         n.x = x - a.x;
         if (n.x < 0)
-            n.x += m;
+            n.x += mod;
         return n;
     }
-    mod operator*(const mod &a) const
+    Mod operator*(const Mod &a) const
     {
         return x * a.x;
     }
-    mod operator+=(const mod &a)
+    Mod operator+=(const Mod &a)
     {
         x += a.x;
-        if (x >= m)
-            x -= m;
+        if (x >= mod)
+            x -= mod;
         return *this;
     }
-    mod operator-=(const mod &a)
+    Mod operator-=(const Mod &a)
     {
         x -= a.x;
         if (x < 0)
-            x += m;
+            x += mod;
         return *this;
     }
-    mod operator*=(const mod &a)
+    Mod operator++()
     {
-        x = (x * a.x) % m;
+        *this += 1;
         return *this;
     }
-    mod pow(long long b) const
+    Mod operator++(int) //postfix
     {
-        mod ans = 1;
-        mod a = *this;
+        Mod temp = *this;
+        *this += 1;
+        return temp;
+    }
+    Mod operator--()
+    {
+        *this -= 1;
+        return *this;
+    }
+    Mod operator--(int) //postfix
+    {
+        Mod temp = *this;
+        *this -= 1;
+        return temp;
+    }
+    Mod operator*=(const Mod &a)
+    {
+        x = (x * a.x) % mod;
+        return *this;
+    }
+    Mod pow(long long b) const
+    {
+        Mod ans = 1;
+        Mod a = *this;
         while (b > 0)
         {
             if (b & 1)
@@ -135,23 +159,23 @@ struct mod
         }
         return ans;
     }
-    mod inv() const
+    Mod inv() const
     {
-        return pow(m - 2);
+        return pow(mod - 2);
     }
-    mod operator/(const mod &a) const
+    Mod operator/(const Mod &a) const
     {
         return (*this) * a.inv();
     }
-    mod operator/=(const mod &a)
+    Mod operator/=(const Mod &a)
     {
         return (*this) *= a.inv();
     }
-    bool operator==(const mod &o) const
+    bool operator==(const Mod &o) const
     {
         return x == o.x;
     }
-    bool operator!=(const mod &o) const
+    bool operator!=(const Mod &o) const
     {
         return x != o.x;
     }
@@ -159,9 +183,28 @@ struct mod
     {
         return x;
     }
+    template <int _mod>
+    friend ostream &operator<<(ostream &os, const Mod<_mod> &num)
+    {
+        os << num.x;
+        return os;
+    }
+    template <int _mod>
+    friend istream &operator>>(istream &is, Mod<_mod> &num)
+    {
+        is >> num.x;
+        if (abs(num.x) >= mod)
+            num.x %= mod;
+        if (num.x < 0)
+            num.x += mod;
+        return is;
+    }
 };
 
-using base = mod<MOD>;
+using base = Mod<MOD>;
+using vbase = vector<base>;
+using vvbase = vector<vector<base>>;
+base two = 2;
 
 int main()
 {

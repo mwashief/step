@@ -186,6 +186,8 @@
             "        if (x < 0)",
             "            x += mod;",
             "    }",
+            "    operator int() const { return x; }",
+            "    operator long long() const { return x; }",
             "    Mod operator+(const Mod &a) const",
             "    {",
             "        Mod n;",
@@ -302,6 +304,9 @@
             "    }",
             "};",
             "using base = Mod<MOD>;",
+            "using vbase = vector<base>;",
+            "using vvbase = vector<vector<base>>;",
+            "base two = 2;",
         ],
         "description": "Modular arithmetic class"
     },
