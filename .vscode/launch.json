@@ -2,11 +2,34 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Rust build and debug active file",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${fileDirname}/${fileBasenameNoExtension}.out",
+            "windows": {
+                "name": "Rust build and debug active file",
+                "type": "lldb",
+                "request": "launch",
+                "program": "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "sourceLanguages": [
+                "rust"
+            ],
+            "MIMode": "gdb",
+            "miDebuggerPath": "rust-gdb",
+            "preLaunchTask": "Rust: build active file"
+        },
+        {
             "name": "g++.exe build and debug active file",
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}\\${fileBasenameNoExtension}.out",
             "windows": {
+                "name": "g++.exe build and debug active file",
+                "type": "cppdbg",
+                "request": "launch",
                 "program": "${fileDirname}\\${fileBasenameNoExtension}.exe"
             },
             "args": [],

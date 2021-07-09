@@ -110,7 +110,7 @@
         "applescript": "osascript",
         "clojure": "lein exec",
         "haxe": "haxe --cwd $dirWithoutTrailingSlash --run $fileNameWithoutExt",
-        "rust": "cd $dir && rustc $fileName && $dir$fileNameWithoutExt",
+        "rust": "cd $dir && rustc --emit link=\"$dir$fileNameWithoutExt.out\" $fileName && $dir$fileNameWithoutExt.out",
         "racket": "racket",
         "scheme": "csi -script",
         "ahk": "autohotkey",

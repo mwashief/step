@@ -31,6 +31,29 @@
         },
         {
             "type": "shell",
+            "label": "Rust: build active file",
+            "command": "rustc",
+            "args": [
+                "-g",
+                "--emit",
+                "link=\"${fileDirname}/${fileBasenameNoExtension}.out\"",
+                "${file}"
+            ],
+            "windows": {
+                "args": [
+                    "-g",
+                    "--emit",
+                    "link=\"${fileDirname}\\${fileBasenameNoExtension}.exe\"",
+                    "${file}"
+                ],
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "build"
+        },
+        {
+            "type": "shell",
             "label": "Clean junks",
             "command": "./clean_junk.sh",
             "windows": {
