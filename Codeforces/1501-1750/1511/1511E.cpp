@@ -89,9 +89,7 @@ int main()
     powa[0] = 1LL;
     repe(i, whites + 4) powa[i] = 2LL * powa[i - 1] % MOD;
     for (int i = 0; i < n; i++)
-    {
         for (int j = 0; j < m; j++)
-        {
             if (mat[i][j] == 'o')
             {
                 ll x = 0LL;
@@ -114,12 +112,9 @@ int main()
                     x--;
                 }
             }
-        }
-    }
+
     for (int i = 0; i < m; i++)
-    {
         for (int j = 0; j < n; j++)
-        {
             if (mat[j][i] == 'o')
             {
                 ll x = 0LL;
@@ -142,7 +137,6 @@ int main()
                     x--;
                 }
             }
-        }
-    }
+
     cout << res << endl;
 }
