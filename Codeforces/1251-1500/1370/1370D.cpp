@@ -106,9 +106,6 @@ int main()
     {
         res = getHalfSub(a, (k + 1) >> 1);
         a.pop_back();
-        reverse(a2z(a));
-        a.pop_back();
-        res = min(res, getHalfSub(a, k >> 1));
     }
     else
     {
@@ -116,10 +113,10 @@ int main()
         a.pop_back();
         res = getHalfSub(a, k >> 1);
         a.pb(temp);
-        reverse(a2z(a));
-        a.pop_back();
-        res = min(res, getHalfSub(a, k >> 1));
     }
+    reverse(a2z(a));
+    a.pop_back();
+    res = min(res, getHalfSub(a, k >> 1));
 
     cout << res << endl;
 }
