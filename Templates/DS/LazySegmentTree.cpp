@@ -113,11 +113,11 @@ private:
         int mid = (l + r) >> 1;
         int leftNode = (node << 1) + 1;
         int rightNode = leftNode + 1;
-        if (lazy[node])
+        if (lazy[node]) //change here
         {
             propagate(leftNode, lazy[node], mid - l + 1);
             propagate(rightNode, lazy[node], r - mid);
-            lazy[node] = 0;
+            lazy[node] = (T)0; // change here
         }
         return OP(queryUtil(leftNode, l, mid, ql, qr), queryUtil(rightNode, mid + 1, r, ql, qr));
     }
@@ -137,11 +137,11 @@ private:
         int mid = (l + r) >> 1;
         int leftNode = (node << 1) + 1;
         int rightNode = leftNode + 1;
-        if (lazy[node])
+        if (lazy[node]) //change here
         {
             propagate(leftNode, lazy[node], mid - l + 1);
             propagate(rightNode, lazy[node], r - mid);
-            lazy[node] = 0;
+            lazy[node] = 0; //change here
         }
         return tree[node] = OP(updateUtil(leftNode, l, mid, ql, qr, val), updateUtil(rightNode, mid + 1, r, ql, qr, val));
     }
