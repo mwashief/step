@@ -101,7 +101,7 @@ auto add(vi &a, vi &b)
     return ans;
 }
 
-auto go(int guess, vi &taken)
+auto go(int guess)
 {
     cout << guess << endl;
     int g;
@@ -129,7 +129,7 @@ inline void __run_test()
             guess = kitsToNumber(sub(kits, taken));
         else
             guess = kitsToNumber(add(kits, taken));
-        if (go(guess, taken))
+        if (go(guess))
             return;
         auto guessKits = getKits(guess);
         taken = sub(taken, guessKits);
