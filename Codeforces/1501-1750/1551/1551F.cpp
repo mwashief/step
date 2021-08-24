@@ -223,7 +223,6 @@ namespace std
 
 }
 
-vbase fact(101), inv(101);
 inline void __run_test()
 {
     int n, k;
@@ -322,9 +321,6 @@ int main()
     freopen(LOCAL_INPUT, "r", stdin);
 #endif
 #endif
-    fact[0] = 1;
-    repe(i, 100) fact[i] = fact[i - 1] * base(i);
-    rep(i, 101) inv[i] = fact[i].inv();
     int __tests;
     cin >> __tests;
     while (__tests--)
