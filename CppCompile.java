@@ -60,7 +60,7 @@ public class CppCompile {
                 long endTime = System.nanoTime();
                 long timeElapsed = endTime - startTime;
                 System.out.println("\u2705 Execution done");
-                System.out.println(ANSI_RED + "-- Execution time: " + ANSI_RED_BACKGROUND + ANSI_BLACK + timeElapsed / 1000000
+                System.out.println(ANSI_RED + "-- Execution time: " + ANSI_GREEN_BACKGROUND + ANSI_WHITE + timeElapsed / 1000000
                         + "ms" + ANSI_RESET);
             }
             catch(Exception e)
