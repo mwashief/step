@@ -31,6 +31,35 @@
         },
         {
             "type": "shell",
+            "label": "C/C++: build active file with IO",
+            "command": "g++",
+            "args": [
+                "-D__DEBUG__",
+                "-DLOCAL_INPUT=\"\\\"${workspaceFolder}/IO/input.dat\\\"\"",
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}.out"
+            ],
+            "windows": {
+                "args": [
+                    "-D__DEBUG__",
+                    "-g",
+                    "${file}",
+                    "-o",
+                    "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                ],
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
+        },
+        {
+            "type": "shell",
             "label": "Rust: build active file",
             "command": "rustc",
             "args": [
