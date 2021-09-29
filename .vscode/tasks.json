@@ -93,6 +93,19 @@
             },
             "problemMatcher": [],
             "group": "build"
+        },
+        {
+            "type": "shell",
+            "label": "Upload File",
+            "command": "git",
+            "args": [
+                "commit",
+                "${file}",
+                "-m",
+                "\"$(echo ${relativeFileDirname} | cut -d'/' -f1)",
+                "${fileBasenameNoExtension}\""
+            ],
+            "group": "build"
         }
     ]
 }
