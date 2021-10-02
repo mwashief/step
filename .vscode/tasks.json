@@ -96,7 +96,7 @@
         },
         {
             "type": "shell",
-            "label": "Upload File",
+            "label": "Commit this staged file",
             "command": "git",
             "args": [
                 "commit",
