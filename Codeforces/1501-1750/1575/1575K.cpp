@@ -193,61 +193,6 @@ using vbase = vector<base>;
 using vvbase = vector<vector<base>>;
 base two = 2;
 
-ll k;
-
-base go(ll n, ll m, ll ax, ll ay, ll bx, ll by, ll r, ll c)
-{
-    base res = 1;
-    while (1)
-    {
-        if (n == c && m == r)
-        {
-            res *= base(k).pow(n * m);
-            break;
-        }
-        if (ax + r - 1 < bx)
-        {
-            res *= base(k).pow(n * m - r * c);
-            break;
-        }
-        if (ay > by + c - 1)
-        {
-            res *= base(k).pow(n * m - r * c);
-            break;
-        }
-        if (ay + c - 1 < by)
-        {
-            res *= base(k).pow(n * m - r * c);
-            break;
-        }
-        ll rr = ax + r - bx;
-        bx = r - rr + 1;
-        ax = 1;
-        ll cc;
-        if (ay >= by)
-        {
-            cc = by + c - ay;
-            by = 1;
-            ay = c - cc + 1;
-        }
-        else
-        {
-            cc = ay - by + c;
-            ay = 1;
-            by = c - cc + 1;
-        }
-        ll dd = n * m + rr * cc - 2LL * r * c;
-
-        base d = base(k).pow(dd);
-        n = c;
-        m = r;
-        r = rr;
-        c = cc;
-        res = res * d;
-    }
-    return res;
-}
-
 int main()
 {
     fastio;
@@ -260,11 +205,49 @@ int main()
     freopen(LOCAL_INPUT, "r", stdin);
 #endif
 #endif
-    ll n, m, r, c;
-    cin >> n >> m >> k >> r >> c;
+    ll n, m, k, r, c;
     pll a, b;
+    cin >> n >> m >> k >> r >> c;
     cin >> a.fr >> a.sc >> b.fr >> b.sc;
     if (a.fr > b.fr)
         swap(a, b);
-    cout << go(n, m, a.fr, a.sc, b.fr, b.sc, r, c) << endl;
+    base res = 1;
+    while (1)
+    {
+        if (n == c && m == r)
+        {
+            res *= base(k).pow(n * m);
+            break;
+        }
+        if (a.fr + r - 1 < b.fr || a.sc > b.sc + c - 1 || a.sc + c - 1 < b.sc)
+        {
+            res *= base(k).pow(n * m - r * c);
+            break;
+        }
+        ll rr = a.fr + r - b.fr;
+        b.fr = r - rr + 1;
+        a.fr = 1;
+        ll cc;
+        if (a.sc >= b.sc)
+        {
+            cc = b.sc + c - a.sc;
+            b.sc = 1;
+            a.sc = c - cc + 1;
+        }
+        else
+        {
+            cc = a.sc - b.sc + c;
+            a.sc = 1;
+            b.sc = c - cc + 1;
+        }
+        ll dd = n * m + rr * cc - 2LL * r * c;
+
+        base d = base(k).pow(dd);
+        n = c;
+        m = r;
+        r = rr;
+        c = cc;
+        res = res * d;
+    }
+    cout << res << endl;
 }
