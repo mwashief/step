@@ -78,7 +78,12 @@
             "#endif",
             "#endif",
             "\t$0",
-            "}"
+            "}",
+            "\n$BLOCK_COMMENT_START",
+            "-> Check for data types",
+            "-> Fix macro",
+            "-> Run test case",
+            "$BLOCK_COMMENT_END"
         ],
         "description": "Initializes cpp"
     },
