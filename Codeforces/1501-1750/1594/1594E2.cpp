@@ -318,36 +318,22 @@ int main()
             auto k = temp.back();
             temp.pop_back();
 
-            if ((k.fr & 1LL) == 0LL)
+            if ((k.fr & 1LL) == 0LL && gsz(temp) && temp.back().fr == k.fr + 1)
             {
-                if (gsz(temp) && temp.back().fr == k.fr + 1)
-                {
-                    auto kk = temp.back();
-                    vbase res(6);
-                    rep(j, 6)
-                    {
-                        base lhs = 0;
-                        base rhs = 0;
-                        rep(p, 6) if (p != j && p != 5 - j) rhs += k.sc[p];
-                        rep(p, 6) if (p != j && p != 5 - j) lhs += kk.sc[p];
-                        res[j] = rhs * lhs;
-                    }
 
-                    weird[k.fr >> 1] = res;
-                    temp.pop_back();
-                }
-                else
+                auto kk = temp.back();
+                vbase res(6);
+                rep(j, 6)
                 {
-                    vbase res(6);
-                    rep(j, 6)
-                    {
-                        base lhs = base(4) * base(memo[i + 1]);
-                        base rhs = 0;
-                        rep(p, 6) if (p != j && p != 5 - j) rhs += k.sc[p];
-                        res[j] = rhs * lhs;
-                    }
-                    weird[k.fr >> 1] = res;
+                    base lhs = 0;
+                    base rhs = 0;
+                    rep(p, 6) if (p != j && p != 5 - j) rhs += k.sc[p];
+                    rep(p, 6) if (p != j && p != 5 - j) lhs += kk.sc[p];
+                    res[j] = rhs * lhs;
                 }
+
+                weird[k.fr >> 1] = res;
+                temp.pop_back();
             }
             else
             {
