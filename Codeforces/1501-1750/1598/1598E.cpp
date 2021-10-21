@@ -70,10 +70,69 @@ public:
         left = (int)x;
         right = (int)x;
     }
-    Stair operator+(Stair y)
+};
+
+template <class T, class OP>
+class SegmentTree
+{
+    vector<T> t;
+    void build()
+    {
+        for (int i = n - 1; i > 0; --i)
+            t[i] = OP()(t[i << 1], t[i << 1 | 1]);
+    }
+
+public:
+    int n;
+
+    SegmentTree(int nn)
+    {
+        n = nn;
+        t = vector<T>(n << 1);
+        build();
+    }
+
+    SegmentTree(vector<T> v)
+    {
+        n = v.size();
+        t = vector<T>(n << 1);
+        for (int i = 0; i < n; ++i)
+            t[i + n] = v[i];
+        build();
+    }
+
+    void update(int p, T value)
+    {
+        for (t[p += n] = value; p > 1; p >>= 1)
+            if (p & 1)
+                t[p >> 1] = OP()(t[p ^ 1], t[p]);
+            else
+                t[p >> 1] = OP()(t[p], t[p ^ 1]);
+    }
+
+    T query(int l, int r)
+    {
+        r++;
+        T left, right;
+        left.len = 0;
+        right.len = 0;
+        for (l += n, r += n; l < r; l >>= 1, r >>= 1)
+        {
+            if (l & 1)
+                left = OP()(left, t[l++]);
+            if (r & 1)
+                right = OP()(t[--r], right);
+        }
+        return OP()(left, right);
+    }
+};
+
+class Add
+{
+public:
+    Stair operator()(Stair x, Stair y)
     {
         Stair res;
-        Stair x = *this;
         res.internal = x.internal + y.internal;
         res.len = x.len + y.len;
         if (x.left == x.len)
@@ -90,107 +149,6 @@ public:
             res.internal += temp * (temp + 1) / 2LL;
         }
         return res;
-    }
-};
-
-//change here
-template <class T>
-T OP(T a, T b)
-{
-    return a + b;
-}
-
-template <class T>
-class SegmentTree
-{
-private:
-    //change here
-
-    T buildUtil(vector<T> &a, int node, int l, int r)
-    {
-        if (l == r)
-        {
-            tree[node] = a[l];
-            return tree[node];
-        }
-        int mid = (l + r) >> 1;
-        int leftNode = (node << 1) + 1;
-        int rightNode = leftNode + 1;
-        return tree[node] = OP(buildUtil(a, leftNode, l, mid), buildUtil(a, rightNode, mid + 1, r));
-    }
-
-    T queryUtil(int node, int l, int r, int ql, int qr)
-    {
-        //change here
-        if (ql > r || qr < l)
-        {
-            Stair s;
-            s.len = 0;
-            return s;
-        }
-        if (l >= ql && r <= qr)
-            return tree[node];
-
-        int mid = (l + r) >> 1;
-        int leftNode = (node << 1) + 1;
-        int rightNode = leftNode + 1;
-
-        return OP(queryUtil(leftNode, l, mid, ql, qr), queryUtil(rightNode, mid + 1, r, ql, qr));
-    }
-
-    T updateUtil(int node, int l, int r, int ql, T val)
-    {
-        if (ql > r || ql < l)
-            return tree[node];
-        if (l >= ql && r <= ql)
-        {
-
-            tree[node] = val;
-
-            return tree[node];
-        }
-
-        int mid = (l + r) >> 1;
-        int leftNode = (node << 1) + 1;
-        int rightNode = leftNode + 1;
-
-        return tree[node] = OP(updateUtil(leftNode, l, mid, ql, val), updateUtil(rightNode, mid + 1, r, ql, val));
-    }
-
-public:
-    int n;
-    vector<T> tree;
-
-    SegmentTree(int n)
-    {
-        this->n = n;
-        tree = vector<T>(4 * n);
-
-        vector<T> a(n);
-        build(a);
-    }
-
-    void build(vector<T> &a)
-    {
-        buildUtil(a, 0, 0, n - 1);
-    }
-
-    SegmentTree(vector<T> &a)
-    {
-        this->n = a.size();
-        tree = vector<T>(4 * n);
-
-        build(a);
-    }
-
-    T query(int l, int r)
-    {
-        return queryUtil(0, 0, n - 1, l, r);
-    }
-
-    void update(int l, T val)
-    {
-        updateUtil(0, 0, n - 1, l, val);
     }
 };
 
@@ -257,9 +215,9 @@ int main()
     ll ans = 0LL;
     ll blacks = 0LL;
     vvb mat(n, vb(m));
-    vector<SegmentTree<Stair>> maintain;
+    vector<SegmentTree<Stair, Add>> maintain;
     for (auto stair : stairs)
-        maintain.pb(SegmentTree<Stair>(gsz(stair)));
+        maintain.pb(SegmentTree<Stair, Add>(gsz(stair)));
 
     auto update = [&](int r, int c)
     {
