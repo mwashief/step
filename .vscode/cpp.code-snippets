@@ -83,8 +83,9 @@
             "-> Check for data types",
             "-> Fix macro",
             "-> Run test case",
-            "-> Check the copied part again (imp**)",
+            "-> Check the copied part",
             "-> Set or multiset?",
+            "-> Check statement order",
             "$BLOCK_COMMENT_END"
         ],
         "description": "Initializes cpp"
