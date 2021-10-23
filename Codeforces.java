@@ -67,6 +67,11 @@ public class Codeforces {
         }
         String os = System.getProperty("os.name");
 
+        if(args.length > 0){
+            System.out.println(dir);
+            return;
+        }
+
         String[] fargs = new String[] { "cmd.exe", "/c", "code", dir };
         if (os.equalsIgnoreCase("Linux"))
             fargs = new String[] { fargs[2], fargs[3] };
