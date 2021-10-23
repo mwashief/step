@@ -1,7 +1,7 @@
 /*
     Washief Hossain Mugdho
     23 October 2021
-    Step 1594F
+    Codeforces 1594F
 */
 
 #ifndef __DEBUG__
