@@ -58,44 +58,15 @@ using mii = map<int, int>;
 using umii = unordered_map<int, int>;
 using seti = set<int>;
 using useti = unordered_set<int>;
+ll n, a[MAX], prefix[MAX], memo[MAX][450];
 
-namespace std
+ll find(ll k)
 {
-
-    template <class Fun>
-    class y_combinator_result
-    {
-        Fun fun_;
-
-    public:
-        template <class T>
-        explicit y_combinator_result(T &&fun) : fun_(std::forward<T>(fun)) {}
-
-        template <class... Args>
-        decltype(auto) operator()(Args &&...args)
-        {
-            return fun_(std::ref(*this), std::forward<Args>(args)...);
-        }
-    };
-
-    template <class Fun>
-    decltype(auto) y_combinator(Fun &&fun)
-    {
-        return y_combinator_result<std::decay_t<Fun>>(std::forward<Fun>(fun));
-    }
-
-    template <class T>
-    T &unmove(T &&t) { return t; }
-
-}
-
-ll find(ll n)
-{
-    ll l = 0, r = n;
+    ll l = 0, r = k;
     while (l < r)
     {
         ll mid = (l + r) >> 1;
-        if (mid * (mid + 1) / 2LL >= n)
+        if (mid * (mid + 1) / 2LL >= k)
             r = mid;
         else
             l = mid + 1;
@@ -103,33 +74,31 @@ ll find(ll n)
     return l;
 }
 
-ll a[MAX], prefix[MAX], memo[MAX][450];
+ll dp(int i, int j)
+{
+    if (j == 0)
+        return INT64_MAX;
+    if (n - i < j || i >= n)
+        return -2;
+    if (memo[i][j] != -1)
+        return memo[i][j];
+    ll res = -2;
+    ll temp = dp(i + j, j - 1);
+    if (temp != -2 && temp > prefix[i + j] - prefix[i])
+        res = prefix[i + j] - prefix[i];
+    res = max(res, dp(i + 1, j));
+
+    return memo[i][j] = res;
+};
 
 inline void __run_test()
 {
-    int n;
     cin >> n;
     rep(i, n) cin >> a[i];
     rep(i, n) prefix[i + 1] = prefix[i] + a[i];
     int d = find(n) + 2;
     rep(i, n) rep(j, d + 1) memo[i][j] = -1;
 
-    auto dp = y_combinator([&](auto self, int i, int j) -> ll
-                           {
-                               if (j == 0)
-                                   return INT64_MAX;
-                               if (n - i < j || i >= n)
-                                   return -2;
-                               if (memo[i][j] != -1)
-                                   return memo[i][j];
-                               ll res = -2;
-                               ll temp = self(i + j, j - 1);
-                               if (temp != -2 && temp > prefix[i + j] - prefix[i])
-                                   res = prefix[i + j] - prefix[i];
-                               res = max(res, self(i + 1, j));
-
-                               return memo[i][j] = res;
-                           });
     rrep(i, d) if (dp(0, i) != -2)
     {
         cout << i << endl;
