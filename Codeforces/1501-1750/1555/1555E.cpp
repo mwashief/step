@@ -186,45 +186,38 @@ int main()
 #endif
     int n, m;
     cin >> n >> m;
-    map<int, vpii> process;
-    vector<pair<int, vpii>> segs;
+    vector<pair<int, pii>> segs;
     rep(i, n)
     {
         int l, r, w;
         cin >> l >> r >> w;
         l--;
         r -= 2;
-        process[w].pb({l, r});
+        segs.pb({w, {l, r}});
     }
-
-    for (auto d : process)
-        segs.pb(d);
-    vi right(gsz(segs), -1);
+    sort(a2z(segs));
+    vi right(n, -1);
     int l = 0, r = 1;
     SegmentTree<int> st(m - 1);
-    for (auto d : segs[l].sc)
-        st.update(d.fr, d.sc, 1);
-
-    while (l < gsz(segs))
+    st.update(segs[0].sc.fr, segs[0].sc.sc, 1);
+    while (l < n)
     {
-        if (st.query(0, m - 1) > 0)
+        if (st.query(0, m - 2) > 0)
         {
             right[l] = r - 1;
-            for (auto d : segs[l].sc)
-                st.update(d.fr, d.sc, -1);
+            st.update(segs[l].sc.fr, segs[l].sc.sc, -1);
             l++;
         }
-        else if (r < gsz(segs))
+        else if (r < n)
         {
-            for (auto d : segs[r].sc)
-                st.update(d.fr, d.sc, 1);
+            st.update(segs[r].sc.fr, segs[r].sc.sc, 1);
             r++;
         }
         else
             break;
     }
     int res = INT32_MAX;
-    rep(i, gsz(segs)) if (right[i] != -1) res = min(res, segs[right[i]].fr - segs[i].fr);
+    rep(i, n) if (right[i] != -1) res = min(res, segs[right[i]].fr - segs[i].fr);
     cout << res << endl;
 }
 
