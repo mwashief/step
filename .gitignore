@@ -15,6 +15,7 @@
 *.so
 *.dat
 *.cph
+*.swp
 tempCodeRunnerFile*
 test*
 META-INF
