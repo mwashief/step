@@ -354,5 +354,14 @@
             "}",
         ],
         "description": "Y combinator class support"
+    },
+    "Codeforces Link": {
+        "prefix": [
+            "codeforces_link"
+        ],
+        "body": [
+            "// https://codeforces.com/problemset/problem/${TM_FILENAME_BASE/([0123456789]*)[A-Z].*$/$1/}/${TM_FILENAME_BASE/[0123456789]*([A-Z].*$)/$1/}"
+        ],
+        "description": "Y combinator class support"
     }
 }
