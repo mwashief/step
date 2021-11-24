@@ -31,6 +31,7 @@
 #define gsz(v) ((int)(v).size())
 #define MOD 1000000007 //998244353
 #define MAX 1000005
+#define OFFSET 1000000
 
 #if !defined(__INTERACTIVE__) && !defined(__DEBUG__)
 #define endl "\n"
@@ -321,37 +322,28 @@ int main()
 
     int m;
     cin >> m;
-    SegmentTree<int> odd(2000006);
-    SegmentTree<int> even(2000006);
+    vector<SegmentTree<int>> st(2, SegmentTree<int>(2000006));
+
     rep(i, m)
     {
         ll x;
         cin >> x;
         ll r = x - 1;
-        if (r & 1)
-            odd.update(-r + 1000000, r + 1000000, 1);
-        else
-            even.update(-r + 1000000, r + 1000000, 1);
+        st[r & 1].update(-r + OFFSET, r + OFFSET, 1);
     }
     vbase fact(500004);
     fact[0] = base(1);
     repe(i, 500003) fact[i] = fact[i - 1] * base(i);
     base res = 1;
-    mii all;
-    rep(i, 2000006) if (i & 1)
+    vpii all;
+    rep(i, 2000006)
     {
-        ll temp = odd.query(i, i);
+        ll temp = st[i & 1].query(i, i);
         res = res * fact[temp];
         if (temp)
-            all[i - 1000000] = temp;
+            all.pb({i - OFFSET, temp});
     }
-    rep(i, 2000006) if (!(i & 1))
-    {
-        ll temp = even.query(i, i);
-        res = res * fact[temp];
-        if (temp)
-            all[i - 1000000] = temp;
-    }
+
     ll now = 1;
     base ans = 0;
     for (auto a : all)
