@@ -87,6 +87,7 @@
             "-> Set or multiset?",
             "-> Check statement order",
             "-> Check simple logic errors",
+            "-> Read problem statements carefully",
             "$BLOCK_COMMENT_END"
         ],
         "description": "Initializes cpp"
