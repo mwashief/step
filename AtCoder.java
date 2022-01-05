@@ -16,8 +16,11 @@ public class AtCoder {
     public static void main(String[] args) throws Exception {
         String problemID;
         Scanner sc = new Scanner(System.in);
-        problemID = sc.nextLine();
+        if(args.length == 0)
+            problemID = sc.nextLine();
+        else problemID = args[0];
         sc.close();
+        
         problemID = problemID.toUpperCase();
         String contest = "";
         String problem = "";

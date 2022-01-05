@@ -19,14 +19,23 @@ public class Codeforces {
         int bundleNumber = (Integer.parseInt(contest) + bundleSize - 1) / bundleSize;
         int end = bundleSize * bundleNumber;
         int start = end - bundleSize + 1;
-        return String.valueOf(start) + "-" + String.valueOf(end);
+        String startBundle = new StringBuilder(String.valueOf(start)).reverse().toString();
+        String endBundle = new StringBuilder(String.valueOf(end)).reverse().toString();
+        while(startBundle.length() < 4) startBundle = startBundle + "0";
+        while(endBundle.length() < 4) endBundle = endBundle + "0";
+        startBundle = new StringBuilder(startBundle).reverse().toString();
+        endBundle = new StringBuilder(endBundle).reverse().toString();
+        return startBundle + "-" + endBundle;
     }
 
     public static void main(String[] args) throws Exception {
         String problemID;
         Scanner sc = new Scanner(System.in);
-        problemID = sc.nextLine();
+        if(args.length == 0)
+            problemID = sc.nextLine();
+        else problemID = args[0];
         sc.close();
+
         problemID = problemID.toUpperCase();
         String contest = "";
         String problem = "";
