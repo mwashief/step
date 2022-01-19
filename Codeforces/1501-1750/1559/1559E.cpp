@@ -233,7 +233,7 @@ int main()
             vbase temp(sum + 1);
             int start = (l[i] + d - 1) / d;
             int finish = r[i] / d;
-            rep(j, m + 1)
+            rep(j, sum + 1)
             {
                 int s = j + start;
                 int e = min(sum, j + finish);
