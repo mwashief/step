@@ -106,6 +106,20 @@
                 "${fileBasenameNoExtension}\""
             ],
             "group": "build"
+        },
+        {
+            "type": "shell",
+            "label": "Delete comments",
+            "command": "gcc",
+            "args": [
+                "-fpreprocessed",
+                "-dD",
+                "-E",
+                "${file}",
+                ">",
+                "${file}_"
+            ],
+            "group": "build"
         }
     ]
 }

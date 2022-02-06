@@ -86,7 +86,7 @@
         "cpp": "java CppCompile.java $fullFileName",
         "objective-c": "cd $dir && gcc -framework Cocoa $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
         "php": "php",
-        "python": "python -u",
+        "python": "cd $dir && python3 -u $fileName",
         "perl": "perl",
         "perl6": "perl6",
         "ruby": "ruby",
