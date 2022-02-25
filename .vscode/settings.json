@@ -75,7 +75,22 @@
         "typeinfo": "cpp",
         "any": "cpp",
         "bit": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "queue": "cpp",
+        "stack": "cpp",
+        "version": "cpp",
+        "cassert": "cpp",
+        "ccomplex": "cpp",
+        "cerrno": "cpp",
+        "cfloat": "cpp",
+        "ciso646": "cpp",
+        "climits": "cpp",
+        "cstdalign": "cpp",
+        "cstdbool": "cpp",
+        "ctgmath": "cpp",
+        "filesystem": "cpp",
+        "ios": "cpp",
+        "locale": "cpp"
     },
     "C_Cpp.clang_format_style": "Emulated Visual Studio",
     // "cpp": "cd $dir && g++ -DLOCAL_OUTPUT=\\\"/mnt/01D61CD5AE35EDF0/Step/IO/output.dat\\\" -DLOCAL_INPUT=\\\"/mnt/01D61CD5AE35EDF0/Step/IO/input.dat\\\" $fileName -o $fileNameWithoutExt.out && $dir$fileNameWithoutExt.out"
