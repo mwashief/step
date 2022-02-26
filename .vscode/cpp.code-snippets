@@ -12,7 +12,6 @@
             "",
             "#ifndef __DEBUG__",
             "#pragma GCC optimize(\"Ofast\")",
-            "#pragma GCC optimization(\"unroll-loops, no-stack-protector\")",
             "#pragma GCC target(\"avx,avx2,fma\")",
             "#endif",
             "",
