@@ -110,13 +110,20 @@
         {
             "type": "shell",
             "label": "Delete comments",
-            "command": "gcc",
+            "command": "g++",
             "args": [
                 "-fpreprocessed",
                 "-dD",
                 "-E",
                 "${file}",
                 ">",
+                "${file}_;",
+                "tail",
+                "-n+2",
+                "${file}_",
+                ">",
+                "${file};",
+                "rm",
                 "${file}_"
             ],
             "group": "build"
