@@ -58,6 +58,140 @@ using umii = unordered_map<int, int>;
 using seti = set<int>;
 using useti = unordered_set<int>;
 
+template <int mod>
+struct Mod
+{
+    long long x;
+    Mod() : x(0) {}
+    Mod(long long xx) : x(xx)
+    {
+        if (abs(x) >= mod)
+            x %= mod;
+        if (x < 0)
+            x += mod;
+    }
+    operator int() const { return x; }
+    operator long long() const { return x; }
+    Mod operator+(const Mod &a) const
+    {
+        Mod n;
+        n.x = x + a.x;
+        if (n.x >= mod)
+            n.x -= mod;
+        return n;
+    }
+    Mod operator-(const Mod &a) const
+    {
+        Mod n;
+        n.x = x - a.x;
+        if (n.x < 0)
+            n.x += mod;
+        return n;
+    }
+    Mod operator*(const Mod &a) const
+    {
+        return x * a.x;
+    }
+    Mod operator+=(const Mod &a)
+    {
+        x += a.x;
+        if (x >= mod)
+            x -= mod;
+        return *this;
+    }
+    Mod operator-=(const Mod &a)
+    {
+        x -= a.x;
+        if (x < 0)
+            x += mod;
+        return *this;
+    }
+    Mod operator++()
+    {
+        *this += 1;
+        return *this;
+    }
+    Mod operator++(int) // postfix
+    {
+        Mod temp = *this;
+        *this += 1;
+        return temp;
+    }
+    Mod operator--()
+    {
+        *this -= 1;
+        return *this;
+    }
+    Mod operator--(int) // postfix
+    {
+        Mod temp = *this;
+        *this -= 1;
+        return temp;
+    }
+    Mod operator*=(const Mod &a)
+    {
+        x = (x * a.x) % mod;
+        return *this;
+    }
+    Mod pow(long long b) const
+    {
+        Mod ans = 1;
+        Mod a = *this;
+        while (b > 0)
+        {
+            if (b & 1)
+                ans *= a;
+            a *= a;
+            b /= 2;
+        }
+        return ans;
+    }
+    Mod inv() const
+    {
+        return pow(mod - 2);
+    }
+    Mod operator/(const Mod &a) const
+    {
+        return (*this) * a.inv();
+    }
+    Mod operator/=(const Mod &a)
+    {
+        return (*this) *= a.inv();
+    }
+    bool operator==(const Mod &o) const
+    {
+        return x == o.x;
+    }
+    bool operator!=(const Mod &o) const
+    {
+        return x != o.x;
+    }
+    long long operator()() const
+    {
+        return x;
+    }
+    template <int _mod>
+    friend ostream &operator<<(ostream &os, const Mod<_mod> &num)
+    {
+        os << num.x;
+        return os;
+    }
+    template <int _mod>
+    friend istream &operator>>(istream &is, Mod<_mod> &num)
+    {
+        is >> num.x;
+        if (abs(num.x) >= mod)
+            num.x %= mod;
+        if (num.x < 0)
+            num.x += mod;
+        return is;
+    }
+};
+using base = Mod<MOD>;
+using vbase = vector<base>;
+using vvbase = vector<vector<base>>;
+base two = 2;
+
 inline void __run_test()
 {
     int n, m, s, t;
@@ -75,7 +209,7 @@ inline void __run_test()
         adj[v].pb(u);
     }
     vi dis(n, INT32_MAX);
-    vvl ways(2, vl(n));
+    vvbase ways(2, vbase(n));
     vi order;
     queue<int> q;
 
