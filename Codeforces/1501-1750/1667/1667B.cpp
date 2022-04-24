@@ -163,7 +163,6 @@ inline void __run_test()
     vi dp(n + 1, -n);
     dp[n] = 0;
 
-    map<int, int> same;
     SegmentTree<int, Max<int>> st(n + 2);
     st.update(prefix[n], n - 1);
 
