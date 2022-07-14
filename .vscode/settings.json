@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.render": "xml",
         "*.asm": "assembly",
         "iostream": "cpp",
         "iomanip": "cpp",
@@ -90,7 +91,8 @@
         "ctgmath": "cpp",
         "filesystem": "cpp",
         "ios": "cpp",
-        "locale": "cpp"
+        "locale": "cpp",
+        "xiosbase": "cpp"
     },
     "C_Cpp.clang_format_style": "Emulated Visual Studio",
     // "cpp": "cd $dir && g++ -DLOCAL_OUTPUT=\\\"/mnt/01D61CD5AE35EDF0/Step/IO/output.dat\\\" -DLOCAL_INPUT=\\\"/mnt/01D61CD5AE35EDF0/Step/IO/input.dat\\\" $fileName -o $fileNameWithoutExt.out && $dir$fileNameWithoutExt.out"
@@ -150,13 +152,25 @@
                 "name": "Codeforces",
                 "color": "#BBCC99",
                 "singleInstance": true,
+                "focus": true,
                 "command": "java Codeforces.java", // This is executed in the terminal.
             },
             {
                 "name": "AtCoder",
                 "color": "#BBCC99",
                 "singleInstance": true,
+                "focus": true,
                 "command": "java AtCoder.java", // This is executed in the terminal.
+            },
+            {
+                "name": "🔽",
+                "singleInstance": true,
+                "command": "code IO/input.dat", // This is executed in the terminal.
+            },
+            {
+                "name": "🔼",
+                "singleInstance": true,
+                "command": "code IO/output.dat", // This is executed in the terminal.
             }
         ]
     },
