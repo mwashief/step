@@ -66,9 +66,9 @@ void input(T &t, ArgTypes &...args)
 }
 
 /***************
- * 
+ *
  * For elem
- * 
+ *
  ***************/
 using TType = int;
 using LType = int;
@@ -80,7 +80,10 @@ TType sumPushUp(TType a, TType b)
 LType *sumPushDown(LType *node, LType value)
 {
     if (node == 0)
+    {
         node = new LType;
+        *node = (LType)0;
+    }
 
     *node += value;
     return node;
@@ -92,9 +95,9 @@ TType sumTPL(TType nodeVal, LType val, int l, int r)
 }
 
 /***************
- * 
+ *
  * For Min Elem
- * 
+ *
  ***************/
 
 pair<TType, TType> elemPushUp(pair<TType, TType> a, pair<TType, TType> b)
@@ -107,7 +110,10 @@ pair<TType, TType> elemPushUp(pair<TType, TType> a, pair<TType, TType> b)
 LType *elemLPL(LType *node, LType value)
 {
     if (node == 0)
+    {
         node = new LType;
+        *node = (LType)0;
+    }
 
     *node += value;
     return node;
@@ -144,7 +150,7 @@ private:
 
     T queryUtil(int node, int l, int r, int ql, int qr)
     {
-        //change here
+        // change here
         if (ql > r || qr < l)
             return INI;
         if (l >= ql && r <= qr)
@@ -192,9 +198,9 @@ public:
     vector<T> tree;
     vector<L *> lazy;
     T INI;
-    SegmentTree(int n, T ini)
+    SegmentTree(int nn, T ini)
     {
-        this->n = n;
+        this->n = nn;
         INI = ini;
         tree = vector<T>(4 * n, INI);
         lazy = vector<L *>(4 * n, (L *)0);
@@ -224,6 +230,13 @@ public:
     void update(int l, int r, L val)
     {
         updateUtil(0, 0, n - 1, l, r, val);
+    }
+
+    ~SegmentTree()
+    {
+        for (int i = 0; i < 4 * n; i++)
+            if (lazy[i])
+                delete lazy[i];
     }
 };
 
