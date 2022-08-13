@@ -53,7 +53,7 @@ public class CppCompile {
                     path + "/" + file + "." + extension, "-o", path + "/" + file + ".out" };
             */
 
-            String[] fargs = new String[] { "g++", "-Wall", "-Wextra", "-pedantic", "-std=c++2a", "-Wshadow", "-Wformat=2", "-Wfloat-equal", "-Wconversion", "-Wlogical-op", "-Wshift-overflow=2", "-Wduplicated-cond", "-Wcast-qual", "-Wcast-align", "-D_GLIBCXX_DEBUG", "-D_GLIBCXX_DEBUG_PEDANTIC", "-D_FORTIFY_SOURCE=2", "-fsanitize=address", "-fsanitize=undefined", "-fno-sanitize-recover", "-fstack-protector",
+            String[] fargs = new String[] { "g++", "-Wall", "-Wextra", "-pedantic", "-std=c++20", "-Wshadow", "-Wformat=2", "-Wfloat-equal", "-Wconversion", "-Wlogical-op", "-Wshift-overflow=2", "-Wduplicated-cond", "-Wcast-qual", "-Wcast-align", "-D_GLIBCXX_DEBUG", "-D_GLIBCXX_DEBUG_PEDANTIC", "-D_FORTIFY_SOURCE=2", "-fsanitize=address", "-fsanitize=undefined", "-fno-sanitize-recover", "-fstack-protector",
                     "-DLOCAL_OUTPUT=\"" + System.getProperty("user.dir") + "/IO/output.dat\"",
                     "-DLOCAL_INPUT=\"" + System.getProperty("user.dir") + "/IO/input.dat\"",
                     path + "/" + file + "." + extension, "-o", path + "/" + file + ".out" };
