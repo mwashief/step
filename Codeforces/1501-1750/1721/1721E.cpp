@@ -77,26 +77,17 @@ int main()
     vvi memo(n + 15, vi(26, 0));
     vi prefix(n + 15);
 
-    auto leftConnect = [&](int index)
+    auto calcPrefix = [&](int index)
     {
         int ch = s[index - 1] - 'a';
         int pre = memo[index - 1][ch];
         prefix[index] = pre;
+        memo[index] = memo[pre];
+        memo[index][s[pre] - 'a'] = pre + 1;
         return;
     };
 
-    auto rightConnect = [&](int index)
-    {
-        memo[index] = memo[prefix[index]];
-        memo[index][s[prefix[index]] - 'a'] = prefix[index] + 1;
-        return;
-    };
-
-    repe(i, n)
-    {
-        leftConnect(i);
-        rightConnect(i);
-    }
+    repe(i, n) calcPrefix(i);
 
     int q;
     cin >> q;
@@ -114,8 +105,7 @@ int main()
 
         for (int i = n + 1; i <= gsz(s); i++)
         {
-            leftConnect(i);
-            rightConnect(i);
+            calcPrefix(i);
             cout << prefix[i] << " ";
         }
         cout << endl;
