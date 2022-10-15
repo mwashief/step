@@ -158,6 +158,7 @@ inline void __run_test()
     for (int i = 1; i < (1 << k); i++)
     {
         vi candidates;
+        vb visited(n);
         rrep(j, k) if (i & (1 << j)) candidates.pb(h[carless[j]]);
 
         int lastBoy = candidates[0];
@@ -172,6 +173,7 @@ inline void __run_test()
             while (gsz(candidates) && u == candidates.back())
             {
                 candidates.pop_back();
+                visited = vb(n);
                 q = queue<int>();
             }
 
@@ -179,14 +181,18 @@ inline void __run_test()
                 break;
 
             for (auto child : adj[u])
-                if (level[child] > level[u])
+                if (!visited[child] && level[child] > level[u])
+                {
                     q.push(child);
+                    visited[child] = true;
+                }
         }
 
         if (gsz(candidates) == 0)
         {
             q = queue<int>();
             q.push(lastBoy);
+            visited = vb(n);
             while (gsz(q))
             {
                 int u = q.front();
@@ -196,8 +202,11 @@ inline void __run_test()
                     canTake[i][frnd] = true;
 
                 for (auto child : adj[u])
-                    if (level[child] > level[u])
+                    if (!visited[child] && level[child] > level[u])
+                    {
                         q.push(child);
+                        visited[child] = true;
+                    }
             }
         }
     }
