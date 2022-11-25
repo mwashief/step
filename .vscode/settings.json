@@ -176,6 +176,7 @@
     },
     "code-runner.ignoreSelection": true,
     "editor.minimap.enabled": false,
+    "python.formatting.provider": "yapf",
     /*
     "workbench.colorCustomizations": {
         "activityBar.background": "#000000",
