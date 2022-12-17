@@ -1,7 +1,7 @@
 {
     "files.associations": {
-        "*.render": "xml",
         "*.asm": "assembly",
+        "*.render": "xml",
         "iostream": "cpp",
         "iomanip": "cpp",
         "cmath": "cpp",
@@ -92,7 +92,10 @@
         "filesystem": "cpp",
         "ios": "cpp",
         "locale": "cpp",
-        "xiosbase": "cpp"
+        "xiosbase": "cpp",
+        "ranges": "cpp",
+        "span": "cpp",
+        "stacktrace": "cpp"
     },
     "C_Cpp.clang_format_style": "Emulated Visual Studio",
     // "cpp": "cd $dir && g++ -DLOCAL_OUTPUT=\\\"/mnt/01D61CD5AE35EDF0/Step/IO/output.dat\\\" -DLOCAL_INPUT=\\\"/mnt/01D61CD5AE35EDF0/Step/IO/input.dat\\\" $fileName -o $fileNameWithoutExt.out && $dir$fileNameWithoutExt.out"
