@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "command",
+            "name": "run",
+            "program": "java",
+            "args": ["$PROJECT_DIR$/CppCompile.java", "$FILE$"],
+        },
+    ]
+}
