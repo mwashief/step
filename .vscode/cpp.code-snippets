@@ -5,7 +5,6 @@
         ],
         "body": [
             "$BLOCK_COMMENT_START",
-            "\tWashief Hossain Mugdho",
             "\t$CURRENT_DATE $CURRENT_MONTH_NAME $CURRENT_YEAR",
             "   ${TM_DIRECTORY/(.*Step)*([\\/\\\\])/ /g} ${TM_FILENAME_BASE}",
             "$BLOCK_COMMENT_END",
@@ -348,9 +347,6 @@
             "    {",
             "        return y_combinator_result<std::decay_t<Fun>>(std::forward<Fun>(fun));",
             "    }",
-            "",
-            "    template <class T>",
-            "    T &unmove(T &&t) { return t; }",
             "",
             "}",
         ],
