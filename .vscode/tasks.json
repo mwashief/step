@@ -116,7 +116,17 @@
         },
         {
             "type": "shell",
-            "label": "Commit this staged file",
+            "label": "Stage this file",
+            "command": "git",
+            "args": [
+                "add",
+                "${file}"
+            ],
+            "group": "build"
+        },
+        {
+            "type": "shell",
+            "label": "Stage and commit this file",
             "command": "git",
             "args": [
                 "commit",
@@ -124,6 +134,9 @@
                 "-m",
                 "\"$(echo ${relativeFileDirname} | cut -d'/' -f1)",
                 "${fileBasenameNoExtension}\""
+            ],
+            "dependsOn": [
+                "Stage this file"
             ],
             "group": "build"
         },
