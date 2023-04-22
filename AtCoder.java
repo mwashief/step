@@ -16,9 +16,9 @@ public class AtCoder {
     public static void main(String[] args) throws Exception {
         String problemID;
         Scanner sc = new Scanner(System.in);
-        if(args.length < 2)
+        if(args.length == 0)
             problemID = sc.nextLine();
-        else problemID = args[1];
+        else problemID = args[0];
         sc.close();
 
         String [] maybeSplitable = problemID.split("\\.");
