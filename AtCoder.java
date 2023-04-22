@@ -20,6 +20,14 @@ public class AtCoder {
             problemID = sc.nextLine();
         else problemID = args[1];
         sc.close();
+
+        String [] maybeSplitable = problemID.split("\\.");
+        if(maybeSplitable.length == 2)
+        {
+            problemID = maybeSplitable[0];
+            fileType = "." + maybeSplitable[1];
+            System.out.println("file extension is " + fileType);
+        }
         
         problemID = problemID.toUpperCase();
         String contest = "";

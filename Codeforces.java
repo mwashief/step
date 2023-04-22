@@ -30,11 +30,20 @@ public class Codeforces {
 
     public static void main(String[] args) throws Exception {
         String problemID;
+        String fileType = ".cpp";
         Scanner sc = new Scanner(System.in);
         if(args.length < 2)
             problemID = sc.nextLine();
         else problemID = args[1];
         sc.close();
+
+        String [] maybeSplitable = problemID.split("\\.");
+        if(maybeSplitable.length == 2)
+        {
+            problemID = maybeSplitable[0];
+            fileType = "." + maybeSplitable[1];
+            System.out.println("file extension is " + fileType);
+        }
 
         problemID = problemID.toUpperCase();
         String contest = "";
@@ -66,13 +75,13 @@ public class Codeforces {
             System.out.println(ANSI_CYAN + contest + " contest folder created." + ANSI_RESET);
         }
 
-        dir = dir + "/" + problemID + ".cpp";
+        dir = dir + "/" + problemID + fileType;
 
         if (Files.exists(Paths.get(dir)))
-            System.out.println(ANSI_BLUE + problemID + ".cpp already exists." + ANSI_RESET);
+            System.out.println(ANSI_BLUE + problemID + fileType + " already exists." + ANSI_RESET);
         else {
             Files.createFile(Paths.get(dir));
-            System.out.println(ANSI_CYAN + problemID + ".cpp created." + ANSI_RESET);
+            System.out.println(ANSI_CYAN + problemID + fileType + " created." + ANSI_RESET);
         }
         String os = System.getProperty("os.name");
 
