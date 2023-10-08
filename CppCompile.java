@@ -48,14 +48,14 @@ public class CppCompile {
 
             /*
                     String[] fargs = new String[] { "g++", "-std=c++2a",
-                    "-DLOCAL_OUTPUT=\"" + System.getProperty("user.dir") + "/IO/output.dat\"",
-                    "-DLOCAL_INPUT=\"" + System.getProperty("user.dir") + "/IO/input.dat\"",
+                    "-DLOCAL_OUTPUT=\"" + System.getProperty("user.dir") + "/IO/output.txt\"",
+                    "-DLOCAL_INPUT=\"" + System.getProperty("user.dir") + "/IO/input.txt\"",
                     path + "/" + file + "." + extension, "-o", path + "/" + file + ".out" };
             */
 
             String[] fargs = new String[] { "g++", "-Wall", "-Wextra", "-pedantic", "-std=c++20", "-Wshadow", "-Wformat=2", "-Wfloat-equal", "-Wconversion", "-Wlogical-op", "-Wshift-overflow=2", "-Wduplicated-cond", "-Wcast-qual", "-Wcast-align", "-D_GLIBCXX_DEBUG", "-D_GLIBCXX_DEBUG_PEDANTIC", "-D_FORTIFY_SOURCE=2", "-fsanitize=address", "-fsanitize=undefined", "-fno-sanitize-recover", "-fstack-protector",
-                    "-DLOCAL_OUTPUT=\"" + System.getProperty("user.dir") + "/IO/output.dat\"",
-                    "-DLOCAL_INPUT=\"" + System.getProperty("user.dir") + "/IO/input.dat\"",
+                    "-DLOCAL_OUTPUT=\"" + System.getProperty("user.dir") + "/IO/output.txt\"",
+                    "-DLOCAL_INPUT=\"" + System.getProperty("user.dir") + "/IO/input.txt\"",
                     path + "/" + file + "." + extension, "-o", path + "/" + file + ".out" };
         
             new File(path + "/" + file + ".out").delete();
@@ -95,8 +95,8 @@ public class CppCompile {
             dir = dir.replace("\\", "\\\\");
 
             String[] fargs = new String[] { "cmd.exe", "/c", "g++", "-Wl,--stack,268435456",
-                    "-DLOCAL_OUTPUT=\\\"" + dir + "\\\\IO\\\\output.dat\\\"",
-                    "-DLOCAL_INPUT=\\\"" + dir + "\\\\IO\\\\input.dat\\\"",
+                    "-DLOCAL_OUTPUT=\\\"" + dir + "\\\\IO\\\\output.txt\\\"",
+                    "-DLOCAL_INPUT=\\\"" + dir + "\\\\IO\\\\input.txt\\\"",
                     "\"" + path + "\\" + file + "." + extension + "\"", "-o", "\"" + path + "\\" + file + "\"" };
             new File(path + "\\" + file + ".exe").delete();
             new ProcessBuilder(fargs).inheritIO().start().waitFor();
