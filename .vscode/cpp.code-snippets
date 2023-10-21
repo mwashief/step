@@ -110,7 +110,10 @@
             "int __tests;",
             "cin >> __tests;",
             "for (int __test_case = 1; __test_case <= __tests; __test_case++)",
+            "{",
+            "\tcout << \"Case #\" << __test_case << \": \";"
             "\t__run_test(__test_case);"
+            "}"
         ],
         "description": "Creates classic version of test case utility"
     },
