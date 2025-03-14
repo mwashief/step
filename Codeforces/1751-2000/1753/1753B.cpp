@@ -22,7 +22,7 @@
 #define untie cin.tie(0)
 #define rep(i, n) for (int i = 0; i < (n); i++)
 #define repe(i, n) for (int i = 1; i <= (n); i++)
-#define rrep(i, n) for (int i = (n)-1; i >= 0; i--)
+#define rrep(i, n) for (int i = (n) - 1; i >= 0; i--)
 #define rrepe(i, n) for (int i = (n); i > 0; i--)
 #define ms(a, b) memset(a, b, sizeof a)
 #define a2z(x) (x).begin(), (x).end()
@@ -72,7 +72,6 @@ int main()
 #endif
     int n, x;
     cin >> n >> x;
-
     vi a(x + 1);
 
     rep(i, n)
