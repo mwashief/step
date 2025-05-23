@@ -1,3 +1,6 @@
+// Problem: AtCoder Beginner Contest 185 - E - Sequence Matching
+// Problem Link: https://atcoder.jp/contests/abc185/tasks/abc185_e
+// Notes: Solved using dynamic programming. The DP state dp[i][j] represents the minimum cost to match the first i elements of array A and the first j elements of array B.
 /*
     Washief Hossain Mugdho
     03 January 2021

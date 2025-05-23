@@ -1,3 +1,6 @@
+// Problem: Codeforces Round #118 (Div. 2) - D. Caesar's Legions
+// Problem Link: https://codeforces.com/problemset/problem/118/D 
+// Notes: [Optional: Add any specific notes about the solution approach]
 /*
     Washief Hossain Mugdho
     28 December 2020

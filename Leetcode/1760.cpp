@@ -1,3 +1,6 @@
+// Problem: LeetCode 1760 - Minimum Limit of Balls in a Bag
+// Problem Link: https://leetcode.com/problems/minimum-limit-of-balls-in-a-bag/
+// Notes: [Optional: Add any specific notes about the solution approach]
 /*
     Washief Hossain Mugdho
     17 February 2021
