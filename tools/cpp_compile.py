@@ -40,8 +40,8 @@ def main():
     print(f"{PURPLE}OS: {RESET}{BLUE}{platform.system()}{RESET}")
     print(f"{PURPLE}Path: {RESET}{BLUE}{src}{RESET}")
 
-    output_txt = ROOT / "IO" / "output.txt"
-    input_txt = ROOT / "IO" / "input.txt"
+    output_txt = ROOT / "io" / "output.txt"
+    input_txt = ROOT / "io" / "input.txt"
 
     compile_cmd = [
         "g++", "-Wall", "-Wextra", "-pedantic", "-std=c++20",

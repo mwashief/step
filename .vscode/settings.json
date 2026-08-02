@@ -145,7 +145,7 @@
         "applescript": "osascript",
         "clojure": "lein exec",
         "haxe": "haxe --cwd $dirWithoutTrailingSlash --run $fileNameWithoutExt",
-        "rust": "python3 \"$workspaceRoot/tools/sync_bins.py\" && cargo run --manifest-path \"$workspaceRoot/Cargo.toml\" --bin $fileNameWithoutExt",
+        "rust": "python3 tools/rust_compile.py $fullFileName",
         "racket": "racket",
         "scheme": "csi -script",
         "ahk": "autohotkey",

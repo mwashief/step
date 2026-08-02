@@ -1,0 +1,117 @@
+{
+  "Initialize": {
+    "scope": "rust",
+    "prefix": ["initialize"],
+    "body": [
+      "$BLOCK_COMMENT_START",
+      "\t$CURRENT_DATE $CURRENT_MONTH_NAME $CURRENT_YEAR",
+      "   ${TM_DIRECTORY/(.*Step)*([\\/\\\\])/ /g} ${TM_FILENAME_BASE}",
+      "$BLOCK_COMMENT_END",
+      "",
+      "#![allow(dead_code)]",
+      "#![allow(unused)]",
+      "#![allow(unused_imports)]",
+      "",
+      "use std::cmp::{max, min, Reverse};",
+      "use std::collections::{HashMap, HashSet};",
+      "use std::fs::File;",
+      "use std::io::{self, prelude::*};",
+      "use std::str;",
+      "",
+      "struct Scanner<R> {",
+      "    reader: R,",
+      "    buf_str: Vec<u8>,",
+      "    buf_iter: str::SplitWhitespace<'static>,",
+      "}",
+      "impl<R: BufRead> Scanner<R> {",
+      "    fn new(reader: R) -> Self {",
+      "        Self {",
+      "            reader,",
+      "            buf_str: vec![],",
+      "            buf_iter: \"\".split_whitespace(),",
+      "        }",
+      "    }",
+      "    fn token<T: str::FromStr>(&mut self) -> T {",
+      "        loop {",
+      "            if let Some(token) = self.buf_iter.next() {",
+      "                return token.parse().ok().expect(\"Failed parse\");",
+      "            }",
+      "            self.buf_str.clear();",
+      "            self.reader",
+      "                .read_until(b'\\n', &mut self.buf_str)",
+      "                .expect(\"Failed read\");",
+      "            self.buf_iter = unsafe {",
+      "                let slice = str::from_utf8_unchecked(&self.buf_str);",
+      "                std::mem::transmute(slice.split_whitespace())",
+      "            }",
+      "        }",
+      "    }",
+      "}",
+      "",
+      "fn solve<R: BufRead, W: Write>(scan: &mut Scanner<R>, w: &mut W) {",
+      "\t$0",
+      "}",
+      "",
+      "fn main() {",
+      "    #[cfg(debug_assertions)]",
+      "    let (input, output): (Box<dyn Read>, Box<dyn Write>) = (",
+      "        Box::new(File::open(option_env!(\"LOCAL_INPUT\").unwrap_or(\"IO/input.txt\")).expect(\"failed to open input\")),",
+      "        Box::new(File::create(option_env!(\"LOCAL_OUTPUT\").unwrap_or(\"IO/output.txt\")).expect(\"failed to create output\")),",
+      "    );",
+      "    #[cfg(not(debug_assertions))]",
+      "    let (input, output): (Box<dyn Read>, Box<dyn Write>) =",
+      "        (Box::new(io::stdin()), Box::new(io::stdout()));",
+      "",
+      "    let mut scan = Scanner::new(io::BufReader::new(input));",
+      "    let mut out = io::BufWriter::new(output);",
+      "    solve(&mut scan, &mut out);",
+      "}",
+      "",
+      "$BLOCK_COMMENT_START",
+      "-> Check for data types",
+      "-> Fix macro",
+      "-> Run test case",
+      "-> Check the copied part",
+      "-> Set or multiset?",
+      "-> Check statement order",
+      "-> Check simple logic errors",
+      "-> Read problem statements carefully",
+      "$BLOCK_COMMENT_END"
+    ],
+    "description": "Initializes Rust CP template with Scanner + local IO"
+  },
+
+  "Test Case": {
+    "scope": "rust",
+    "prefix": ["test_case"],
+    "body": [
+      "let t: usize = scan.token();",
+      "for _ in 0..t {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Loop over T test cases"
+  },
+
+  "Test Case Classic": {
+    "scope": "rust",
+    "prefix": ["classic_test_case"],
+    "body": [
+      "let t: usize = scan.token();",
+      "for case in 1..=t {",
+      "\twrite!(w, \"Case #{}: \", case).unwrap();",
+      "\t$0",
+      "}"
+    ],
+    "description": "Loop over T test cases, printing 'Case #n: '"
+  },
+
+  "Codeforces Link": {
+    "scope": "rust",
+    "prefix": ["codeforces_link"],
+    "body": [
+      "// https://codeforces.com/problemset/problem/${TM_FILENAME_BASE/([0123456789]*)[A-Z].*$/$1/}/${TM_FILENAME_BASE/[0123456789]*([A-Z].*$)/$1/}"
+    ],
+    "description": "Insert Codeforces problem link derived from filename"
+  }
+}
