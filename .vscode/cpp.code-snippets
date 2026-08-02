@@ -1,8 +1,7 @@
 {
     "Initialize": {
-        "prefix": [
-            "initialize"
-        ],
+        "scope": "cpp",
+        "prefix": ["initialize"],
         "body": [
             "$BLOCK_COMMENT_START",
             "\t$CURRENT_DATE $CURRENT_MONTH_NAME $CURRENT_YEAR",
@@ -86,79 +85,63 @@
             "-> Check statement order",
             "-> Check simple logic errors",
             "-> Read problem statements carefully",
-            "$BLOCK_COMMENT_END"
+            "$BLOCK_COMMENT_END",
         ],
-        "description": "Initializes cpp"
+        "description": "Initializes cpp",
     },
     "Test Case": {
-        "prefix": [
-            "test_case"
-        ],
+        "scope": "cpp",
+        "prefix": ["test_case"],
         "body": [
             "int __tests;",
             "cin >> __tests;",
             "while (__tests--)",
-            "\t__run_test();"
+            "\t__run_test();",
         ],
-        "description": "Creates test case utility"
+        "description": "Creates test case utility",
     },
     "Test Case Classic": {
-        "prefix": [
-            "classic_test_case"
-        ],
+        "scope": "cpp",
+        "prefix": ["classic_test_case"],
         "body": [
             "int __tests;",
             "cin >> __tests;",
             "for (int __test_case = 1; __test_case <= __tests; __test_case++)",
             "{",
-            "\tcout << \"Case #\" << __test_case << \": \";"
-            "\t__run_test(__test_case);"
-            "}"
+            "\tcout << \"Case #\" << __test_case << \": \";",
+            "\t__run_test(__test_case);",
+            "}",
         ],
-        "description": "Creates classic version of test case utility"
+        "description": "Creates classic version of test case utility",
     },
     "Run Test": {
-        "prefix": [
-            "run_tests"
-        ],
-        "body": [
-            "inline void __run_test()",
-            "{",
-            "\t$0",
-            "}"
-        ],
-        "description": "Creates test running function"
+        "scope": "cpp",
+        "prefix": ["run_tests"],
+        "body": ["inline void __run_test()", "{", "\t$0", "}"],
+        "description": "Creates test running function",
     },
     "Run Test Classic": {
-        "prefix": [
-            "classic_run_tests"
-        ],
-        "body": [
-            "inline void __run_test(int &__test_case)",
-            "{",
-            "\t$0",
-            "}"
-        ],
-        "description": "Creates classic version of test running function"
+        "scope": "cpp",
+        "prefix": ["classic_run_tests"],
+        "body": ["inline void __run_test(int &__test_case)", "{", "\t$0", "}"],
+        "description": "Creates classic version of test running function",
     },
     "IO Stream Insert": {
-        "prefix": [
-            "local_io"
-        ],
+        "scope": "cpp",
+        "prefix": ["local_io"],
         "body": [
             "#ifdef LOCAL_OUTPUT",
             "\tfreopen(LOCAL_OUTPUT, \"w\", stdout);",
             "#endif",
             "#ifdef LOCAL_INPUT",
             "\tfreopen(LOCAL_INPUT, \"r\", stdin);",
-            "#endif\n"
+            "#endif\n",
         ],
-        "description": "Sets up local streams"
+        "description": "Sets up local streams",
     },
     "IO Utility": {
-        "prefix": [
-            "io_util"
-        ],
+        "scope": "cpp",
+        "prefix": ["io_util"],
         "body": [
             "\n/***********IO Utility**************/",
             "template <typename... ArgTypes>",
@@ -176,14 +159,13 @@
             "template <typename T, typename... ArgTypes>",
             "void input(T &t, ArgTypes &...args)",
             "{\n\tcin >> t;",
-            "\tinput(args...);\n}"
+            "\tinput(args...);\n}",
         ],
-        "description": "IO itility support"
+        "description": "IO itility support",
     },
     "Modular Arithmetic": {
-        "prefix": [
-            "modular_arithmetic"
-        ],
+        "scope": "cpp",
+        "prefix": ["modular_arithmetic"],
         "body": [
             "template <int mod>",
             "struct Mod",
@@ -319,12 +301,11 @@
             "using vvbase = vector<vector<base>>;",
             "base two = 2;",
         ],
-        "description": "Modular arithmetic class"
+        "description": "Modular arithmetic class",
     },
     "Y Combinator": {
-        "prefix": [
-            "y_combinator_support"
-        ],
+        "scope": "cpp",
+        "prefix": ["y_combinator_support"],
         "body": [
             "namespace std",
             "{",
@@ -353,15 +334,13 @@
             "",
             "}",
         ],
-        "description": "Y combinator class support"
+        "description": "Y combinator class support",
     },
     "Codeforces Link": {
-        "prefix": [
-            "codeforces_link"
-        ],
+        "prefix": ["codeforces_link"],
         "body": [
-            "// https://codeforces.com/problemset/problem/${TM_FILENAME_BASE/([0123456789]*)[A-Z].*$/$1/}/${TM_FILENAME_BASE/[0123456789]*([A-Z].*$)/$1/}"
+            "// https://codeforces.com/problemset/problem/${TM_FILENAME_BASE/([0123456789]*)[A-Z].*$/$1/}/${TM_FILENAME_BASE/[0123456789]*([A-Z].*$)/$1/}",
         ],
-        "description": "Y combinator class support"
-    }
+        "description": "Add codeforces link from the filename",
+    },
 }
