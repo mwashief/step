@@ -118,7 +118,7 @@
         "javascript": "node",
         "java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
         "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-        "cpp": "java CppCompile.java $fullFileName",
+        "cpp": "python3 tools/cpp_compile.py $fullFileName",
         "objective-c": "cd $dir && gcc -framework Cocoa $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
         "php": "php",
         "python": "cd $dir && python3 -u $fileName",
@@ -145,7 +145,7 @@
         "applescript": "osascript",
         "clojure": "lein exec",
         "haxe": "haxe --cwd $dirWithoutTrailingSlash --run $fileNameWithoutExt",
-        "rust": "cd $dir && rustc --emit link=\"$dir$fileNameWithoutExt.out\" $fileName && $dir$fileNameWithoutExt.out",
+        "rust": "python3 \"$workspaceRoot/tools/sync_bins.py\" && cargo run --manifest-path \"$workspaceRoot/Cargo.toml\" --bin $fileNameWithoutExt",
         "racket": "racket",
         "scheme": "csi -script",
         "ahk": "autohotkey",
@@ -171,30 +171,54 @@
                 "color": "#BBCC99",
                 "singleInstance": true,
                 "focus": true,
-                "command": "java Codeforces.java", // This is executed in the terminal.
+                "command": "python3 tools/codeforces.py" // This is executed in the terminal.
             },
             {
                 "name": "AtCoder",
                 "color": "#BBCC99",
                 "singleInstance": true,
                 "focus": true,
-                "command": "java AtCoder.java", // This is executed in the terminal.
+                "command": "python3 tools/atcoder.py" // This is executed in the terminal.
             },
             {
                 "name": "🔽",
                 "singleInstance": true,
-                "command": "code IO/input.txt", // This is executed in the terminal.
+                "command": "code io/input.txt" // This is executed in the terminal.
             },
             {
                 "name": "🔼",
                 "singleInstance": true,
-                "command": "code IO/output.txt", // This is executed in the terminal.
+                "command": "code io/output.txt" // This is executed in the terminal.
             }
         ]
     },
     "code-runner.ignoreSelection": true,
     "editor.minimap.enabled": false,
     "python.formatting.provider": "yapf",
+    "rust-analyzer.linkedProjects": ["./Cargo.toml"],
+    "rust-analyzer.cargo.allTargets": true,
+    "rust-analyzer.cargo.buildScripts.enable": true,
+    "rust-analyzer.files.excludeDirs": [
+        "target",
+        "cmake-build-debug",
+        "AtCoder",
+        "CodeChef",
+        "HackerEarth",
+        "LightOJ",
+        "Leetcode",
+        "UVa",
+        "Other Platforms",
+        "Others",
+        "Templates",
+        "IO",
+        "ProblemSetting"
+    ],
+    "rust-analyzer.checkOnSave": true,
+    "rust-analyzer.diagnostics.disabled": [],
+    "files.watcherExclude": {
+        "**/target/**": true,
+        "**/cmake-build-debug/**": true
+    }
     /*
     "workbench.colorCustomizations": {
         "activityBar.background": "#000000",

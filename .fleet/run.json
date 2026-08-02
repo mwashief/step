@@ -3,8 +3,8 @@
         {
             "type": "command",
             "name": "run",
-            "program": "java",
-            "args": ["$PROJECT_DIR$/CppCompile.java", "$FILE$"],
-        },
+            "program": "python3",
+            "args": ["$PROJECT_DIR$/tools/cpp_compile.py", "$FILE$"]
+        }
     ]
 }

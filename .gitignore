@@ -20,3 +20,8 @@
 tempCodeRunnerFile*
 test*
 META-INF
+
+cmake-build-debug
+
+# For cargo
+/target
