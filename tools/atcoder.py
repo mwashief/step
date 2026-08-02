@@ -65,7 +65,7 @@ def main():
 
     print(f"{GREEN}Contest: {contest} Problem: {problem[1:]}{RESET}")
 
-    contest_dir = ROOT / "AtCoder" / contest
+    contest_dir = ROOT / "atcoder" / contest
 
     if contest_dir.is_dir():
         print(f"{BLUE}{contest} contest folder already exists.{RESET}")

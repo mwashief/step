@@ -58,7 +58,7 @@ def main():
 
     print(f"{GREEN}Contest: {contest} Problem: {problem}{RESET}")
 
-    contest_dir = ROOT / "Codeforces" / get_bundle(int(contest)) / contest
+    contest_dir = ROOT / "codeforces" / get_bundle(int(contest)) / contest
 
     if contest_dir.is_dir():
         print(f"{BLUE}{contest} contest folder already exists.{RESET}")
