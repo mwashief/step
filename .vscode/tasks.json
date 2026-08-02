@@ -19,14 +19,12 @@
                     "${file}",
                     "-o",
                     "${fileDirname}\\${fileBasenameNoExtension}.exe"
-                ],
+                ]
             },
             "options": {
                 "cwd": "${workspaceFolder}"
             },
-            "problemMatcher": [
-                "$gcc"
-            ],
+            "problemMatcher": ["$gcc"],
             "group": "build"
         },
         {
@@ -68,37 +66,23 @@
                     "${file}",
                     "-o",
                     "${fileDirname}\\${fileBasenameNoExtension}.exe"
-                ],
+                ]
             },
             "options": {
                 "cwd": "${workspaceFolder}"
             },
-            "problemMatcher": [
-                "$gcc"
-            ],
+            "problemMatcher": ["$gcc"],
             "group": "build"
         },
         {
             "type": "shell",
             "label": "Rust: build active file",
-            "command": "rustc",
-            "args": [
-                "-g",
-                "--emit",
-                "link=\"${fileDirname}/${fileBasenameNoExtension}.out\"",
-                "${file}"
-            ],
-            "windows": {
-                "args": [
-                    "-g",
-                    "--emit",
-                    "link=\"${fileDirname}\\${fileBasenameNoExtension}.exe\"",
-                    "${file}"
-                ],
-            },
+            "command": "python3",
+            "args": ["tools/rust_compile.py", "${file}", "--build-only"],
             "options": {
                 "cwd": "${workspaceFolder}"
             },
+            "problemMatcher": ["$rustc"],
             "group": "build"
         },
         {
@@ -106,7 +90,7 @@
             "label": "Clean junks",
             "command": "./clean_junk.sh",
             "windows": {
-                "command": "clean_junk.bat",
+                "command": "clean_junk.bat"
             },
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -118,10 +102,7 @@
             "type": "shell",
             "label": "Stage this file",
             "command": "git",
-            "args": [
-                "add",
-                "${file}"
-            ],
+            "args": ["add", "${file}"],
             "group": "build"
         },
         {
@@ -135,9 +116,7 @@
                 "\"$(echo ${relativeFileDirname} | cut -d'/' -f1)",
                 "${fileBasenameNoExtension}\""
             ],
-            "dependsOn": [
-                "Stage this file"
-            ],
+            "dependsOn": ["Stage this file"],
             "group": "build"
         },
         {

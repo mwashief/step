@@ -5,20 +5,13 @@
             "name": "Rust build and debug active file",
             "type": "lldb",
             "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}.out",
+            "program": "${workspaceFolder}/target/debug/${fileBasenameNoExtension}",
             "windows": {
-                "name": "Rust build and debug active file",
-                "type": "lldb",
-                "request": "launch",
-                "program": "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "program": "${workspaceFolder}\\target\\debug\\${fileBasenameNoExtension}.exe"
             },
             "args": [],
             "cwd": "${workspaceFolder}",
-            "sourceLanguages": [
-                "rust"
-            ],
-            "MIMode": "gdb",
-            "miDebuggerPath": "rust-gdb",
+            "sourceLanguages": ["rust"],
             "preLaunchTask": "Rust: build active file"
         },
         {

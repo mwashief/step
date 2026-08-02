@@ -50,6 +50,9 @@ def main():
 
     print(f"{PURPLE}Path: {RESET}{BLUE}{src}{RESET}")
 
+    # at the top of main(), after parsing src:
+    build_only = "--build-only" in sys.argv
+
     # Keep Cargo.toml's [[bin]] list current before building.
     subprocess.run([sys.executable, str(TOOLS_DIR / "sync_bins.py")], check=True)
 
