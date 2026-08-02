@@ -6,12 +6,3 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-# itertools = "0.13"
-
-[[bin]]
-name = "8888F"
-path = "Codeforces/8751-9000/8888/8888F.rs"
-
-[[bin]]
-name = "jam"
-path = "others/jam.rs"
