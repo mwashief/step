@@ -33,7 +33,7 @@
             "command": "g++",
             "args": [
                 "-D__DEBUG__",
-                "-DLOCAL_INPUT=\"\\\"${workspaceFolder}/IO/input.txt\\\"\"",
+                "-DLOCAL_INPUT=\"\\\"${workspaceFolder}/io/input.txt\\\"\"",
                 "-Wall",
                 "-Wextra",
                 "-pedantic",
