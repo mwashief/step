@@ -4,6 +4,7 @@
             "name": "Linux",
             "includePath": [
                 "${default}",
+                "${workspaceFolder}/include",
                 "/home/emzie/boost/boost_1_83_0/"
             ],
             "defines": [],
