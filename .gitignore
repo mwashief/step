@@ -27,3 +27,4 @@ cmake-build-debug
 # For cargo
 /target
 /Cargo.toml
+/others
