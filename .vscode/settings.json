@@ -145,7 +145,7 @@
         "applescript": "osascript",
         "clojure": "lein exec",
         "haxe": "haxe --cwd $dirWithoutTrailingSlash --run $fileNameWithoutExt",
-        "rust": "python3 tools/rust_compile.py $fullFileName",
+        "rust": "PATH=\"/Users/washief/.cargo/bin:$PATH\" python3 /Users/washief/step/tools/rust_compile.py $fullFileName",
         "racket": "racket",
         "scheme": "csi -script",
         "ahk": "autohotkey",
@@ -196,6 +196,16 @@
     "editor.minimap.enabled": false,
     "python.formatting.provider": "yapf",
     "rust-analyzer.linkedProjects": ["./Cargo.toml"],
+    "rust-analyzer.workspace.discoverConfig": null,
+    "rust-analyzer.check.overrideCommand": null,
+    "rust-analyzer.rustfmt.overrideCommand": null,
+    "rust-analyzer.runnables.command": "cargo",
+    "rust-analyzer.server.extraEnv": {
+        "PATH": "/Users/washief/.cargo/bin:/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    },
+    "[rust]": {
+        "editor.defaultFormatter": "facebook.rust-analyzer"
+    },
     "rust-analyzer.cargo.allTargets": true,
     "rust-analyzer.cargo.buildScripts.enable": true,
     "rust-analyzer.files.excludeDirs": [

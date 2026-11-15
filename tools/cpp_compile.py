@@ -52,6 +52,7 @@ def main():
         "-fsanitize=address", "-fsanitize=undefined", "-fno-sanitize-recover",
         "-fstack-protector",
         f"-I{BOOST_INCLUDE}",
+        f"-I{ROOT / 'include'}",
         f'-DLOCAL_OUTPUT="{output_txt}"',
         f'-DLOCAL_INPUT="{input_txt}"',
         str(src), "-o", str(exe_path),

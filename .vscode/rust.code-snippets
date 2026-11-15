@@ -87,7 +87,7 @@
     "body": [
       "let t: usize = scan.token();",
       "for _ in 0..t {",
-      "\t$0",
+      "\t__run_test(scan, w);",
       "}"
     ],
     "description": "Loop over T test cases"
@@ -100,10 +100,32 @@
       "let t: usize = scan.token();",
       "for case in 1..=t {",
       "\twrite!(w, \"Case #{}: \", case).unwrap();",
-      "\t$0",
+      "\t__run_test(scan, w, case);",
       "}"
     ],
     "description": "Loop over T test cases, printing 'Case #n: '"
+  },
+
+  "Run Test": {
+    "scope": "rust",
+    "prefix": ["run_tests"],
+    "body": [
+      "fn __run_test<R: BufRead, W: Write>(scan: &mut Scanner<R>, w: &mut W) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Creates test running function"
+  },
+
+  "Run Test Classic": {
+    "scope": "rust",
+    "prefix": ["classic_run_tests"],
+    "body": [
+      "fn __run_test<R: BufRead, W: Write>(scan: &mut Scanner<R>, w: &mut W, __test_case: usize) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Creates classic version of test running function"
   },
 
   "Codeforces Link": {

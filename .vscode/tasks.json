@@ -8,6 +8,8 @@
             "args": [
                 "-D__DEBUG__",
                 "-g",
+                "-I",
+                "${workspaceFolder}/include",
                 "${file}",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}.out"
@@ -16,6 +18,8 @@
                 "args": [
                     "-D__DEBUG__",
                     "-g",
+                    "-I",
+                    "${workspaceFolder}/include",
                     "${file}",
                     "-o",
                     "${fileDirname}\\${fileBasenameNoExtension}.exe"
@@ -33,6 +37,8 @@
             "command": "g++",
             "args": [
                 "-D__DEBUG__",
+                "-I",
+                "${workspaceFolder}/include",
                 "-DLOCAL_INPUT=\"\\\"${workspaceFolder}/io/input.txt\\\"\"",
                 "-Wall",
                 "-Wextra",
@@ -63,6 +69,8 @@
                 "args": [
                     "-D__DEBUG__",
                     "-g",
+                    "-I",
+                    "${workspaceFolder}/include",
                     "${file}",
                     "-o",
                     "${fileDirname}\\${fileBasenameNoExtension}.exe"
