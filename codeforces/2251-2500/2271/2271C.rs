@@ -56,7 +56,7 @@ fn __run_test<R: BufRead, W: Write>(scan: &mut Scanner<R>, w: &mut W) {
     writeln!(w, "{}", 2 * largest_number + 1);
 
     let mut previous_prefix_sum = 0;
-    for i in (1..(1 << (largest_bit + 1))) {
+    for i in (1..=largest_number) {
         let current_prefix_sum = i ^ (i >> 1);
         let current_number = current_prefix_sum ^ previous_prefix_sum;
         write!(w, "{} 0 ", current_number);
